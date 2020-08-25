@@ -6,9 +6,11 @@ import CartItem from "./CartItem";
 const Cart = () => {
   return (
     <Wrapper>
-      <CartTitle>Your Cart</CartTitle>
-      <ItemCounter>1 item</ItemCounter>
-      <CartItem></CartItem>
+      <div>
+        <CartTitle>Your Cart</CartTitle>
+        <ItemCounter>1 item</ItemCounter>
+        <CartItem></CartItem>
+      </div>
       <TotalAndButton>
         <Total>
           Total:<strong> $12.34</strong>
@@ -26,10 +28,11 @@ const Wrapper = styled.div`
   background: purple;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   padding: 20px 10px;
   position: sticky;
   top: 0;
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 const CartTitle = styled.h2`
@@ -44,9 +47,6 @@ const ItemCounter = styled.p`
 `;
 
 const TotalAndButton = styled.div`
-  position: absolute;
-  bottom: 30px;
-  width: 90%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -54,7 +54,7 @@ const TotalAndButton = styled.div`
 `;
 
 const StyledButton = styled(Button)`
-  max-width: 40%;
+  width: 100px;
 `;
 const Total = styled.div`
   font-size: 1.3em;
