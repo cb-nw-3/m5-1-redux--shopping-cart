@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { cross } from "react-icons-kit/icomoon/cross";
+import { x } from "react-icons-kit/feather/x";
 import { Icon } from "react-icons-kit";
 import UnstyledButton from "./UnstyledButton";
 
@@ -10,13 +11,12 @@ const CartItem = () => {
       <ItemNameAndButton>
         <ItemName>Hello World</ItemName>
         <Button>
-          <Icon icon={cross} size={"100%"}></Icon>
+          <Icon icon={x} size={"100%"}></Icon>
         </Button>
       </ItemNameAndButton>
       <QuantitySection>
         <Label>
-          Quantity:
-          <Input />
+          Quantity: <Input />
         </Label>
       </QuantitySection>
     </Wrapper>
@@ -26,7 +26,7 @@ const CartItem = () => {
 export default CartItem;
 
 const Wrapper = styled.div`
-  border: 3px dashed lightgrey;
+  border: 3px dashed grey;
 `;
 
 const ItemNameAndButton = styled.div`
@@ -39,6 +39,7 @@ const ItemNameAndButton = styled.div`
 
 const ItemName = styled.h2`
   margin: 0;
+  font-weight: 500;
 `;
 
 const QuantitySection = styled.div`
@@ -49,13 +50,20 @@ const QuantitySection = styled.div`
 
 const Label = styled.label`
   color: lightgrey;
+  font-size: 1.2em;
 `;
 
 const Input = styled.input`
   width: 30px;
   height: 30px;
+  border: none;
+  font-size: inherit;
+  padding: 4px;
+  text-align: center;
+  font-weight: bold;
 `;
 
 const Button = styled(UnstyledButton)`
-  width: 5%;
+  width: 25px;
+  height: 25px;
 `;

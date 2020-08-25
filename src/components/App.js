@@ -27,7 +27,9 @@ const App = () => {
 const Wrapper = styled.div`
   position: relative;
   display: grid;
-  grid-template-areas: "header sidebar" "main sidebar";
+  grid-template-areas:
+    "header header header sidebar"
+    "main main main sidebar";
 `;
 
 const Header = styled.header`
