@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 
 const Logo = () => {
   return <Wrapper>Sruthi's Sticker Shop</Wrapper>;
