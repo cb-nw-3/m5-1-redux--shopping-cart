@@ -8,8 +8,6 @@ import { getStoreItemArray } from "../reducers";
 
 const Cart = () => {
   const storeItems = useSelector(getStoreItemArray);
-
-  console.log("storeItems", storeItems);
   return (
     <Wrapper>
       <Header>
@@ -20,8 +18,8 @@ const Cart = () => {
             {storeItems.map((item) => {
               return (
                 <CartItem
+                  id={item.id}
                   title={item.title}
-                  price={item.price}
                   quantity={item.quantity}
                 />
               );

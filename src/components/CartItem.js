@@ -1,14 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import UnstyledButton from "./UnstyledButton";
+import { removeItem } from "../actions";
 
-const CartItem = ({ title, price, quantity }) => {
+const CartItem = ({ id, title, quantity }) => {
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <Top>
         <ItemName>{title}</ItemName>
-        <CloseButton>x</CloseButton>
+        <CloseButton
+          onClick={() => {
+            dispatch(removeItem({ id }));
+          }}
+        >
+          x
+        </CloseButton>
       </Top>
       <Bottom>
         Quantity:
@@ -39,7 +48,11 @@ const ItemName = styled.p`
   font-weight: bold;
 `;
 
-const CloseButton = styled(UnstyledButton)``;
+const CloseButton = styled(UnstyledButton)`
+  height: 10px;
+  border: none;
+  outline: none;
+`;
 
 const QtyBox = styled.div`
   display: inline-block;

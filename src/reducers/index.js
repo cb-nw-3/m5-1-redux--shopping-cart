@@ -3,7 +3,6 @@ const initialState = {};
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_ITEM": {
-      console.log(state);
       return {
         ...state,
         [action.item.id]: {
@@ -11,6 +10,12 @@ export default function cartReducer(state = initialState, action) {
           quantity: 1,
         },
       };
+    }
+    case "REMOVE_ITEM": {
+      let stateCopy = { ...state };
+      delete stateCopy[action.item.id];
+
+      return stateCopy;
     }
     default:
       return state;
