@@ -65,6 +65,7 @@ const CartList = styled.ul`
   list-style-type: none;
   display: flex;
   padding-top: 25px;
+  padding-left: 0px;
   flex-direction: column;
 `;
 
