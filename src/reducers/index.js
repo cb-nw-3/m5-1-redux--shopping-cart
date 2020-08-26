@@ -11,6 +11,11 @@ export default function cartReducer(state = initialState, action) {
                 }
             }
         }
+        case 'REMOVE_ITEM': {
+            let cartUpdated = { ...state };
+            delete cartUpdated[action.item];
+            return cartUpdated;
+        }
         default:
             return state;
     }

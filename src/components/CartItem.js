@@ -1,14 +1,23 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
+import { useDispatch } from 'react-redux';
+import { removeItem } from '../actions';
+
 const CartItem = ({ item }) => {
-    console.log(item)
+    const dispatch = useDispatch();
     return (
         <Wrapper>
             <ItemDetail>
                 <Item>
                     {item.title}
-                    <CloseBtn>X</CloseBtn>
+                    <CloseBtn
+                        onClick={() =>
+                            dispatch(removeItem(item.id))
+                        }
+                    >
+                        X
+                    </CloseBtn>
                 </Item>
                 <Quantity>
                     Quantity:
