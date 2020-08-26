@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
 
-const CartItem = () => {
+const CartItem = ({ id, price, quantity, title }) => {
   return (
     <Wrapper>
       <Item>
-        <ItemName>Hello World</ItemName>
+        <ItemName>{title}</ItemName>
         <RemoveButton>X</RemoveButton>
       </Item>
       <QuantityDiv>
         Quantity:
-        <InputNum type="number" value="1"></InputNum>
+        <InputNum type="number" value={quantity}></InputNum>
       </QuantityDiv>
     </Wrapper>
   );
@@ -20,6 +20,7 @@ const Wrapper = styled.div`
   border: 2px dashed rgba(250, 250, 250, 0.2);
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
 `;
 const Item = styled.div`
   display: flex;
