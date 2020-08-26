@@ -1,28 +1,23 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-const CartItem = () => {
+const CartItem = ({ item }) => {
+    console.log(item)
     return (
         <Wrapper>
             <ItemDetail>
-                <Item>Name
+                <Item>
+                    {item.title}
                     <CloseBtn>X</CloseBtn>
                 </Item>
                 <Quantity>
                     Quantity:
                     <TextInput
+                        value={item.quantity}
                         type="number"
                     />
                 </Quantity>
             </ItemDetail>
-            <TotalItem>
-                <Total>
-                    Total: $12.34
-                </Total>
-                <Btn>
-                    Purchase
-                </Btn>
-            </TotalItem>
         </Wrapper>
     )
 }
@@ -42,6 +37,7 @@ const Item = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 5px;
+    font-size: 18px;
 `
 
 const CloseBtn = styled.button`
@@ -59,24 +55,7 @@ const TextInput = styled.input`
 const Quantity = styled.div`
     background: black;
     padding: 5px;
-`
-
-const TotalItem = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-`
-
-const Total = styled.p`
-`
-
-const Btn = styled.button`
-    color: white;
-    background: red;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 10px;
-    outline: none;
+    font-size: 13px;
 `
 
 export default CartItem;
