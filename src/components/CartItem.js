@@ -3,16 +3,16 @@ import styled from "styled-components";
 
 import UnstyledButton from "./UnstyledButton";
 
-const CartItem = () => {
+const CartItem = ({ title, price, quantity }) => {
   return (
     <Wrapper>
       <Top>
-        <ItemName>Are ya winning, son?</ItemName>
+        <ItemName>{title}</ItemName>
         <CloseButton>x</CloseButton>
       </Top>
       <Bottom>
         Quantity:
-        <QtyBox>1</QtyBox>
+        <QtyBox>{quantity}</QtyBox>
       </Bottom>
     </Wrapper>
   );
@@ -22,6 +22,7 @@ const Wrapper = styled.div`
   width: 100%;
   border: dashed white 3px;
   color: white;
+  margin-bottom: 24px;
 `;
 
 const Top = styled.div`

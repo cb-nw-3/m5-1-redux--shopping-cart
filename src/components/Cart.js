@@ -1,10 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 import CartItem from "./CartItem";
 import Button from "./Button";
+import { getStoreItemArray } from "../reducers";
 
 const Cart = () => {
+  const storeItems = useSelector(getStoreItemArray);
+
+  console.log("storeItems", storeItems);
   return (
     <Wrapper>
       <Header>
@@ -12,7 +17,15 @@ const Cart = () => {
         <ItemCount>2 items</ItemCount>
         <Items>
           <li>
-            <CartItem />
+            {storeItems.map((item) => {
+              return (
+                <CartItem
+                  title={item.title}
+                  price={item.price}
+                  quantity={item.quantity}
+                />
+              );
+            })}
           </li>
         </Items>
       </Header>
