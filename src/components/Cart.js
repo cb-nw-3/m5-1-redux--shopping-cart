@@ -2,14 +2,27 @@ import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import CartItem from "./CartItem";
+import { useSelector } from "react-redux";
+import { getStoreItemArray } from "../reducers";
 
 const Cart = () => {
+  const storeItems = useSelector(getStoreItemArray);
   return (
     <Wrapper>
       <div>
         <CartTitle>Your Cart</CartTitle>
         <ItemCounter>1 item</ItemCounter>
-        <CartItem></CartItem>
+        {storeItems.map((item) => {
+          return (
+            <CartItem
+              key={item.id}
+              price={item.price}
+              title={item.title}
+              id={item.id}
+              quantity={item.quantity}
+            ></CartItem>
+          );
+        })}
       </div>
       <TotalAndButton>
         <Total>

@@ -5,11 +5,11 @@ import { x } from "react-icons-kit/feather/x";
 import { Icon } from "react-icons-kit";
 import UnstyledButton from "./UnstyledButton";
 
-const CartItem = () => {
+const CartItem = ({ price, title, id }) => {
   return (
     <Wrapper>
       <ItemNameAndButton>
-        <ItemName>Hello World</ItemName>
+        <ItemName>{title}</ItemName>
         <Button>
           <Icon icon={x} size={"100%"}></Icon>
         </Button>
@@ -27,6 +27,7 @@ export default CartItem;
 
 const Wrapper = styled.div`
   border: 3px dashed grey;
+  margin-top: 20px;
 `;
 
 const ItemNameAndButton = styled.div`
