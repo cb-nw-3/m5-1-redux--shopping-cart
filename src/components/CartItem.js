@@ -1,16 +1,22 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { cross } from "react-icons-kit/icomoon/cross";
 import { x } from "react-icons-kit/feather/x";
 import { Icon } from "react-icons-kit";
 import UnstyledButton from "./UnstyledButton";
+import { useDispatch } from "react-redux";
+import { removeItem } from "../actions";
 
 const CartItem = ({ price, title, id }) => {
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <ItemNameAndButton>
         <ItemName>{title}</ItemName>
-        <Button>
+        <Button
+          onClick={() => {
+            dispatch(removeItem(id));
+          }}
+        >
           <Icon icon={x} size={"100%"}></Icon>
         </Button>
       </ItemNameAndButton>
