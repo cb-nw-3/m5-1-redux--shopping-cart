@@ -36,11 +36,11 @@ const Cart = () => {
 const Wrapper = styled.section`
   position: sticky;
   top: 0;
-  min-width: 250px;
+  min-width: 185px;
   min-height: 100vh;
   background: #301934;
   color: white;
-  padding: 35px 25px;
+  padding: 35px 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

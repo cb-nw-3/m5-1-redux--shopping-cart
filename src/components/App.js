@@ -34,18 +34,26 @@ const Wrapper = styled.div`
 
 const Header = styled.header`
   grid-area: header;
-  padding: 32px 64px;
+  padding: 32px 20px;
+
+  @media (min-width: 600px){
+    padding: 32px 64px;
+  }
 `;
 
 const ItemGridWrapper = styled.main`
   grid-area: main;
+  padding: 16px 20px;
+
+  @media (min-width: 600px){
   padding: 16px 64px;
+  }
 `;
 
 const CartWrapper = styled.div`
   grid-area: sidebar;
   border-left: 3px dashed #ff406e;
-  padding-left: 8px;
+  padding-left: 3px;
 `;
 
 export default App;
