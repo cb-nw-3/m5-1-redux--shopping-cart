@@ -54,6 +54,7 @@ const CloseBtn = styled.button`
     background: none;
     color: white;
     border: none;
+    cursor: pointer;
 `
 
 const TextInput = styled.input`

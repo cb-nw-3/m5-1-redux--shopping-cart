@@ -1,20 +1,32 @@
+import produce from 'immer';
+
 const initialState = {};
 
 export default function cartReducer(state = initialState, action) {
+    console.log(initialState)
     switch (action.type) {
         case 'ADD_ITEM': {
-            return {
-                ...state,
-                [action.item.id]: {
+            //Immer
+            return produce(state, (draftState) => {
+                draftState[action.item.id] = {
                     ...action.item,
                     quantity: 1,
                 }
-            }
+            });
         }
+        // Without Immer
+        // return {
+        //     ...state,
+        //     [action.item.id]: {
+        //         ...action.item,
+        //         quantity: 1,
+        //     }
+        // }
+
         case 'REMOVE_ITEM': {
-            let cartUpdated = { ...state };
-            delete cartUpdated[action.item];
-            return cartUpdated;
+            return produce(state, (draftState) => {
+                delete draftState[action.item];
+            })
         }
         default:
             return state;
