@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 import UnstyledButton from "./UnstyledButton";
-import { removeItem } from "../actions";
+import { removeItem, updateQuantity } from "../actions";
 
 const CartItem = ({ id, title, quantity }) => {
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const CartItem = ({ id, title, quantity }) => {
         <ItemName>{title}</ItemName>
         <CloseButton
           onClick={() => {
-            dispatch(removeItem({ id }));
+            dispatch(removeItem({ itemId: id }));
           }}
         >
           x
@@ -21,7 +21,12 @@ const CartItem = ({ id, title, quantity }) => {
       </Top>
       <Bottom>
         Quantity:
-        <QtyBox>{quantity}</QtyBox>
+        <QtyBox
+          value={quantity}
+          onChange={(ev) => {
+            dispatch(updateQuantity({ itemId: id, quantity: ev.target.value }));
+          }}
+        />
       </Bottom>
     </Wrapper>
   );
@@ -54,7 +59,7 @@ const CloseButton = styled(UnstyledButton)`
   outline: none;
 `;
 
-const QtyBox = styled.div`
+const QtyBox = styled.input`
   display: inline-block;
   width: 25px;
   height: 25px;
@@ -62,6 +67,7 @@ const QtyBox = styled.div`
   background-color: white;
   color: black;
   text-align: center;
+  margin-left: 5px;
 `;
 
 export default CartItem;
