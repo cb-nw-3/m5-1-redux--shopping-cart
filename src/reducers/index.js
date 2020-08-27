@@ -3,14 +3,19 @@ import produce from 'immer';
 const initialState = {};
 
 export default function cartReducer(state = initialState, action) {
-    console.log(initialState)
     switch (action.type) {
         case 'ADD_ITEM': {
             //Immer
             return produce(state, (draftState) => {
-                draftState[action.item.id] = {
-                    ...action.item,
-                    quantity: 1,
+                let itemSelected = draftState.[action.item.id];
+                if (itemSelected) {
+                    draftState[action.item.id].quantity++;
+                }
+                else {
+                    draftState[action.item.id] = {
+                        ...action.item,
+                        quantity: 1,
+                    }
                 }
             });
         }
@@ -22,6 +27,13 @@ export default function cartReducer(state = initialState, action) {
         //         quantity: 1,
         //     }
         // }
+        case 'UPDATE_QUANTITY': {
+            const { item, newQuantity } = action;
+
+            return produce(state, draftState => {
+                draftState[item].quantity = newQuantity;
+            });
+        }
 
         case 'REMOVE_ITEM': {
             return produce(state, (draftState) => {

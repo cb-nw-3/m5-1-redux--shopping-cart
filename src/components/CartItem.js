@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/macro';
 
 import { useDispatch } from 'react-redux';
-import { removeItem } from '../actions';
+import { updateQuantity, removeItem } from '../actions';
 
 const CartItem = ({ item }) => {
     const dispatch = useDispatch();
@@ -24,6 +24,7 @@ const CartItem = ({ item }) => {
                     <TextInput
                         value={item.quantity}
                         type="number"
+                        onChange={(event) => dispatch(updateQuantity(item.id, event.target.value))}
                     />
                 </Quantity>
             </ItemDetail>
