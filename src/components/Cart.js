@@ -3,12 +3,20 @@ import styled from "styled-components";
 
 import CartItem from "./CartItem";
 
-import { getStoreItemArray } from "../reducers";
+import { getStoreItemArray, getTotal } from "../reducers";
 import { useSelector } from "react-redux";
 
 const Cart = () => {
   const storeItems = useSelector(getStoreItemArray);
-  console.log(storeItems);
+  // console.log(storeItems);
+
+  const subtotal = useSelector(getTotal);
+
+  //i copied the code found in [StoreItem.js] to format the price
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(subtotal / 100);
 
   return (
     <SidebarContainer>
@@ -27,7 +35,7 @@ const Cart = () => {
       <CheckoutContainer>
         <Total>
           Total:
-          <strong> $12.34</strong>
+          <strong> {formattedPrice}</strong>
         </Total>
         <PurchaseButton>Purchase</PurchaseButton>
       </CheckoutContainer>

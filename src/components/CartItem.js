@@ -1,12 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { FiX } from "react-icons/fi";
 
-import { removeItem } from "../actions";
+import { removeItem, updateItem } from "../actions";
 
 const CartItem = ({ id, quantity, title }) => {
   const dispatch = useDispatch();
+
+  //retrieve the current quantity of the item from the store
+  //and display it in the text input as the value
+  const itemQuantity = useSelector((state) => state[id].quantity);
+
   return (
     <Wrapper>
       <TopRow>
@@ -17,7 +22,12 @@ const CartItem = ({ id, quantity, title }) => {
       </TopRow>
       <BottomRow>
         Quantity:
-        <input type="text" value={quantity} disabled={true} />
+        <input
+          type="text"
+          value={itemQuantity}
+          //need to retrieve the current quantity in the text field to be updated
+          onChange={(ev) => dispatch(updateItem(id, ev.target.value))}
+        />
       </BottomRow>
     </Wrapper>
   );
