@@ -3,13 +3,21 @@ import styled from "styled-components";
 
 import CartItem from "./CartItem";
 
+import { getStoreItemArray } from "../reducers";
+import { useSelector } from "react-redux";
+
 const Cart = () => {
+  const storeItems = useSelector(getStoreItemArray);
+  console.log(storeItems);
+
   return (
     <SidebarContainer>
       <CartContainer>
         <Title>Your Cart</Title>
-        <Counter>1 Item</Counter>
-        <CartItem />
+        <Counter>{storeItems.length} Item(s)</Counter>
+        {storeItems.map((item) => (
+          <CartItem key={item.id} quantity={item.quantity} title={item.title} />
+        ))}
       </CartContainer>
       <CheckoutContainer>
         <Total>

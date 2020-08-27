@@ -2,18 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import { FiX } from "react-icons/fi";
 
-const CartItem = () => {
+const CartItem = ({ id, quantity, title }) => {
   return (
     <Wrapper>
       <TopRow>
-        Hello World
+        {title}
         <Button onClick={() => console.log("Item was removed from Cart!")}>
           <FiX size={22} />
         </Button>
       </TopRow>
       <BottomRow>
         Quantity:
-        <input type="text" value="1" />
+        <input type="text" value={quantity} disabled={true} />
       </BottomRow>
     </Wrapper>
   );
