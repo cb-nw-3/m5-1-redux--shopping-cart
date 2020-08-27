@@ -8,13 +8,12 @@ import { useSelector } from "react-redux";
 const Cart = () => {
   const state = useSelector((state) => state);
   const storeItems = useSelector(getStoreItemArray);
-  let itemsInCart = 0;
 
   return (
     <StyledDiv>
       <div style={{ margin: "20px" }}>
         <StyledH1>Your cart</StyledH1>
-        <StyledP>{itemsInCart} items</StyledP>
+        <StyledP>0 items</StyledP>
       </div>
       <ul
         style={{
@@ -26,8 +25,6 @@ const Cart = () => {
         }}
       >
         {storeItems.map((item) => {
-          itemsInCart++;
-
           return (
             <li key={item.id} style={{ listStyleType: "none" }}>
               <CartItem item={item} />
