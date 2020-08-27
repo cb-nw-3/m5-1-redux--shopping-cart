@@ -83,8 +83,6 @@ const Title = styled.h2`
 
 const PurchaseArea = styled.div`
   display: flex;
-  position: sticky;
-  bottom: 0;
   justify-content: space-around;
   align-items: center;
   height: 60px;
