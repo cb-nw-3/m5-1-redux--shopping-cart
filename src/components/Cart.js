@@ -6,8 +6,12 @@ import { useSelector } from "react-redux";
 import { getStoreItemArray } from "../reducers";
 const Cart = () => {
   const state = useSelector((state) => state);
-  const storeItems = useSelector(getStoreItemArray);
 
+  const storeItems = useSelector(getStoreItemArray);
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(storeItems.reduce(reducer, 0) / 100);
   return (
     <Wrapper>
       <Title>Your Cart</Title>
@@ -18,6 +22,7 @@ const Cart = () => {
             key={index}
             title={element.title}
             quantity={element.quantity}
+            id={element.id}
           />
         ))}
       </ItemsWrapper>
@@ -28,7 +33,7 @@ const Cart = () => {
           padding: "0 15px",
         }}
       >
-        <Total>{storeItems.reduce(reducer, 0) / 100}</Total>
+        <Total>{formattedPrice}</Total>
         <Buttom type="submit">Purchanse</Buttom>
       </div>
     </Wrapper>

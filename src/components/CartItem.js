@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { deleteItem } from "./actions";
+import { useDispatch } from "react-redux";
 
-const CartItem = ({ title = "Item title", quantity = 1 }) => {
+const CartItem = ({ title = "Item title", quantity = 1, id }) => {
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <div
@@ -14,7 +17,14 @@ const CartItem = ({ title = "Item title", quantity = 1 }) => {
         }}
       >
         <Title>{title}</Title>
-        <Exit>x</Exit>
+        <Exit
+          onClick={(e) => {
+            e.preventDefault();
+            dispatch(deleteItem({ id }));
+          }}
+        >
+          x
+        </Exit>
       </div>
       <div
         style={{
@@ -78,7 +88,7 @@ const Frame = styled.div`
     padding: 3px;
   }
 `;
-const Exit = styled.div``;
+const Exit = styled.button``;
 
 const Total = styled.div``;
 
