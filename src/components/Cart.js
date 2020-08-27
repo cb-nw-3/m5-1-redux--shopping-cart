@@ -16,7 +16,12 @@ const Cart = () => {
         <Title>Your Cart</Title>
         <Counter>{storeItems.length} Item(s)</Counter>
         {storeItems.map((item) => (
-          <CartItem key={item.id} quantity={item.quantity} title={item.title} />
+          <CartItem
+            key={item.id}
+            quantity={item.quantity}
+            title={item.title}
+            id={item.id}
+          />
         ))}
       </CartContainer>
       <CheckoutContainer>

@@ -1,13 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { FiX } from "react-icons/fi";
 
+import { removeItem } from "../actions";
+
 const CartItem = ({ id, quantity, title }) => {
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <TopRow>
         {title}
-        <Button onClick={() => console.log("Item was removed from Cart!")}>
+        <Button onClick={() => dispatch(removeItem(id))}>
           <FiX size={22} />
         </Button>
       </TopRow>
