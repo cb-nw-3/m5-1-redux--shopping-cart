@@ -1,21 +1,44 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import CartItem from "./CartItem";
+import Buttom from "./Button";
+import { useSelector } from "react-redux";
+import { getStoreItemArray } from "../reducers";
 const Cart = () => {
-  const [items, setItems] = useState([]);
+  const state = useSelector((state) => state);
+  const storeItems = useSelector(getStoreItemArray);
+
   return (
     <Wrapper>
       <Title>Your Cart</Title>
-      <p>{items.length} Items</p>
+      <p>{storeItems.length} Items</p>
       <ItemsWrapper>
-        <CartItem />
+        {storeItems.map((element, index) => (
+          <CartItem
+            key={index}
+            title={element.title}
+            quantity={element.quantity}
+          />
+        ))}
       </ItemsWrapper>
-      <Total>$100</Total>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          padding: "0 15px",
+        }}
+      >
+        <Total>{storeItems.reduce(reducer, 0) / 100}</Total>
+        <Buttom type="submit">Purchanse</Buttom>
+      </div>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const reducer = (accumulator, currentValue) =>
+  accumulator + currentValue.quantity * currentValue.price;
+
+const Wrapper = styled.form`
   position: fixed;
   display: flex;
   flex-direction: column;
@@ -39,10 +62,17 @@ const Title = styled.h2`
 
 const ItemsWrapper = styled.div`
   flex: 1;
-  border: 2px solid green;
   width: 95%;
 `;
 
-const Total = styled.div``;
+const Total = styled.div`
+  font-size: 1.2rem;
+  width: 260px;
+  padding: 50px 0;
+  &::before {
+    color: gray;
+    content: "Total: ";
+  }
+`;
 
 export default Cart;
