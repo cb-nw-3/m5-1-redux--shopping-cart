@@ -7,17 +7,29 @@ import { getStoreItemArray } from "../reducers";
 
 const Cart = () => {
   const storeItems = useSelector(getStoreItemArray);
+
+  let totalPrice = 0;
+  storeItems.forEach((storeItem) => {
+    totalPrice += storeItem.price;
+  });
+
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(totalPrice / 100);
+
   console.log(storeItems);
   return (
     <Wrapper>
       <CartHeader>
         <CartTitle>Your Cart</CartTitle>
-        <CartItemNumber> 0 Items</CartItemNumber>
+        <CartItemNumber>{storeItems.length} Items</CartItemNumber>
         <CartList>
           {storeItems &&
             storeItems.map((storeItem) => {
               return (
                 <CartItem
+                  key={storeItem.id}
                   id={storeItem.id}
                   price={storeItem.price}
                   quantity={storeItem.quantity}
@@ -29,9 +41,9 @@ const Cart = () => {
       </CartHeader>
       <CartCheckout>
         <CartTotal>
-          Total:<Total>$0.00</Total>
+          Total:<Total>{formattedPrice}</Total>
         </CartTotal>
-        <Button>Purchase</Button>
+        <PurchaseButton>Purchase</PurchaseButton>
       </CartCheckout>
     </Wrapper>
   );
@@ -52,6 +64,8 @@ const Wrapper = styled.div`
 
 const CartHeader = styled.div`
   padding: 0 25px;
+  max-height: 80vh;
+  overflow: auto;
 `;
 const CartTitle = styled.h2`
   font-weight: bold;
@@ -70,6 +84,7 @@ const CartCheckout = styled.div`
 const CartTotal = styled.div`
   color: white;
   font-size: 22px;
+  flex: 3;
 `;
 const Total = styled.span`
   font-weight: bold;
@@ -81,6 +96,9 @@ const CartList = styled.ul`
   padding-top: 25px;
   padding-left: 0px;
   flex-direction: column;
+`;
+const PurchaseButton = styled(Button)`
+  flex: 1.5;
 `;
 
 export default Cart;
