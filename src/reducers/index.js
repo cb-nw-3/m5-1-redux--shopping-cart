@@ -1,5 +1,3 @@
-import { bindActionCreators } from "redux";
-
 const initialState = {};
 
 export default function cartReducer(state = initialState, action) {

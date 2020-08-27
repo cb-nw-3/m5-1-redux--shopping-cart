@@ -1,20 +1,28 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import Logo from './Logo';
-import ItemGrid from './ItemGrid';
-import GlobalStyles from './GlobalStyles';
+import Logo from "./Logo";
+import ItemGrid from "./ItemGrid";
+import GlobalStyles from "./GlobalStyles";
+import Cart from "./Cart";
 
 const App = () => {
   return (
     <Wrapper>
-      <Header>
-        <Logo />
-      </Header>
-      <ItemGridWrapper>
-        <ItemGrid />
-      </ItemGridWrapper>
+      <div style={{ display: "flex" }}>
+        <div>
+          <Header>
+            <Logo />
+          </Header>
+          <ItemGridWrapper>
+            <ItemGrid />
+          </ItemGridWrapper>
+        </div>
 
+        <div style={{ position: "absolute", right: 0, height: "100%" }}>
+          <Cart></Cart>
+        </div>
+      </div>
       <GlobalStyles />
     </Wrapper>
   );
