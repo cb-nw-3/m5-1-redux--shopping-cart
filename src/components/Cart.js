@@ -73,6 +73,7 @@ const TotalAndButton = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-left: 10px;
+  margin-top: 10px;
 `;
 
 const StyledButton = styled(Button)`

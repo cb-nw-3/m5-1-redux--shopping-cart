@@ -25,7 +25,6 @@ const CartItem = ({ price, title, id, quantity }) => {
         <Label>
           Quantity:{" "}
           <Input
-            type="number"
             value={quantity}
             onChange={(ev) => {
               dispatch(updateQuantity(id, ev.target.value));
@@ -69,7 +68,7 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  width: 40px;
+  width: 30px;
   height: 30px;
   border: none;
   font-size: inherit;
