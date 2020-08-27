@@ -7,11 +7,20 @@ import { getStoreItemArray } from "../reducers";
 
 const Cart = () => {
   const storeItems = useSelector(getStoreItemArray);
+  let total = 0;
+  storeItems.forEach((item) => {
+    total = total + item.price * item.quantity;
+  });
+
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(total / 100);
   return (
     <Wrapper>
       <div>
         <CartTitle>Your Cart</CartTitle>
-        <ItemCounter>1 item</ItemCounter>
+        <ItemCounter>{storeItems.length} item</ItemCounter>
         {storeItems.map((item) => {
           return (
             <CartItem
@@ -26,7 +35,7 @@ const Cart = () => {
       </div>
       <TotalAndButton>
         <Total>
-          Total:<strong> $12.34</strong>
+          Total:<strong> {formattedPrice}</strong>
         </Total>
         <StyledButton>Purchase</StyledButton>
       </TotalAndButton>

@@ -5,8 +5,9 @@ import { Icon } from "react-icons-kit";
 import UnstyledButton from "./UnstyledButton";
 import { useDispatch } from "react-redux";
 import { removeItem } from "../actions";
+import { updateQuantity } from "../actions";
 
-const CartItem = ({ price, title, id }) => {
+const CartItem = ({ price, title, id, quantity }) => {
   const dispatch = useDispatch();
   return (
     <Wrapper>
@@ -22,7 +23,13 @@ const CartItem = ({ price, title, id }) => {
       </ItemNameAndButton>
       <QuantitySection>
         <Label>
-          Quantity: <Input />
+          Quantity:{" "}
+          <Input
+            value={quantity}
+            onChange={(ev) => {
+              dispatch(updateQuantity(id, ev.target.value));
+            }}
+          />
         </Label>
       </QuantitySection>
     </Wrapper>
