@@ -2,15 +2,39 @@ import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import CartItem from "./CartItem";
+import { getStoreItemArray } from "../reducers/index";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
+  const state = useSelector((state) => state);
+  const storeItems = useSelector(getStoreItemArray);
+  let itemsInCart = 0;
+
   return (
     <StyledDiv>
       <div style={{ margin: "20px" }}>
         <StyledH1>Your cart</StyledH1>
-        <StyledP>0 items</StyledP>
+        <StyledP>{itemsInCart} items</StyledP>
       </div>
-      <div></div>
+      <ul
+        style={{
+          margin: "0",
+          padding: "0",
+          height: "60%",
+          overflow: "hidden",
+          overflowY: "scroll",
+        }}
+      >
+        {storeItems.map((item) => {
+          itemsInCart++;
+
+          return (
+            <li key={item.id} style={{ listStyleType: "none" }}>
+              <CartItem item={item} />
+            </li>
+          );
+        })}
+      </ul>
 
       <div
         style={{

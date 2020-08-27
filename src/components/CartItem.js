@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-const CartItem = () => {
+const CartItem = ({ item }) => {
+  console.log("item from cartItem", item);
   return (
     <StyledDiv>
       <div
@@ -18,8 +19,8 @@ const CartItem = () => {
             padding: "10px 10px 20px 10px",
           }}
         >
-          <StyledH3>Pink Alpaca</StyledH3>
-          <StyledH3>x</StyledH3>
+          <StyledH3>{item.title}</StyledH3>
+          <h4 style={{ color: "#fff", margin: "0" }}>x</h4>
         </div>
 
         <div
@@ -31,8 +32,13 @@ const CartItem = () => {
           }}
         >
           <form style={{ marginTop: "10px" }}>
-            <StyledLabel for="fname">Quantity:</StyledLabel>
-            <StyledInput type="text" id="fname" name="fname" />
+            <StyledLabel htmlFor="fname">Quantity:</StyledLabel>
+            <StyledInput
+              type="text"
+              id="fname"
+              name="fname"
+              defaultValue={item.quantity}
+            />
           </form>
         </div>
       </div>
@@ -64,6 +70,7 @@ const StyledInput = styled.input`
   border-bottom: 2px solid #fff;
   color: #fff;
   font-weight: bold;
+  text-align: center;
 `;
 
 export default CartItem;

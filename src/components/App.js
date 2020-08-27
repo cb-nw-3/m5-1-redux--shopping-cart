@@ -20,7 +20,7 @@ const App = () => {
         </div>
 
         <div style={{ position: "absolute", right: 0, height: "100%" }}>
-          <Cart></Cart>
+          <Cart />
         </div>
       </div>
       <GlobalStyles />
@@ -40,12 +40,6 @@ const Header = styled.header`
 const ItemGridWrapper = styled.main`
   grid-area: main;
   padding: 16px 64px;
-`;
-
-const CartWrapper = styled.div`
-  grid-area: sidebar;
-  border-left: 3px dashed #ff406e;
-  padding-left: 8px;
 `;
 
 export default App;
