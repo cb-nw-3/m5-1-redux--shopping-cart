@@ -22,7 +22,7 @@ const Cart = () => {
     <Wrapper>
       <Header>
         <Title>Your Cart</Title>
-        <ItemCount>2 items</ItemCount>
+        <ItemCount>{storeItems.length} items</ItemCount>
         <Items>
           <li>
             {storeItems.map((item) => {
@@ -51,14 +51,19 @@ const Cart = () => {
 
 const Wrapper = styled.section`
   position: sticky;
+  top: 0;
+  min-width: 300px;
   background-color: #401f43;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 15px 30px;
+  padding: 15px 5px 15px 30px;
 `;
-const Header = styled.header``;
+
+const Header = styled.header`
+  overflow: auto;
+`;
 
 const ItemCount = styled.p`
   color: white;
@@ -78,10 +83,14 @@ const Title = styled.h2`
 
 const PurchaseArea = styled.div`
   display: flex;
+  position: sticky;
+  bottom: 0;
   justify-content: space-around;
   align-items: center;
-  height: 40px;
+  height: 60px;
   margin-bottom: 40px;
+  padding-top: 10px;
+  padding-right: 20px;
 `;
 
 const Total = styled.p`

@@ -33,7 +33,7 @@ const CartItem = ({ id, title, quantity }) => {
 };
 
 const Wrapper = styled.div`
-  width: 100%;
+  width: 90%;
   border: dashed white 3px;
   color: white;
   margin-bottom: 24px;
