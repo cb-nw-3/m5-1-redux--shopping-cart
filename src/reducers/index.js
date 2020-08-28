@@ -16,12 +16,10 @@ export default function cartReducer(state = initialState, action) {
     case "DELETE_ITEM":
       const stateCopy = { ...state };
       const { id } = action.id;
+      console.log(id);
       delete stateCopy[id];
-      return {
-        ...stateCopy,
-      };
+      return id == undefined ? {} : { ...stateCopy };
     case "UPDATE_QUANTITY":
-      console.log(state, action);
       return {
         ...state,
         [action.id]: {

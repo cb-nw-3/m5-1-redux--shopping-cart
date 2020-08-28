@@ -4,6 +4,8 @@ import CartItem from "./CartItem";
 import Buttom from "./Button";
 import { useSelector } from "react-redux";
 import { getStoreItemArray } from "../reducers";
+import Close from "./Close";
+
 const Cart = () => {
   // const state = useSelector((state) => state);
 
@@ -15,7 +17,18 @@ const Cart = () => {
   return (
     <Wrapper>
       <Title>Your Cart</Title>
-      <p>{storeItems.length} Items</p>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          height: "3rem",
+          padding: "0 15px",
+        }}
+      >
+        <p>{storeItems.length} Items</p>
+        <Close />
+      </div>
       <ItemsWrapper>
         {storeItems.map((element, index) => {
           return <CartItem key={index} title={element.title} id={element.id} />;
@@ -63,6 +76,8 @@ const Title = styled.h2`
 const ItemsWrapper = styled.div`
   flex: 1;
   width: 95%;
+  max-height: 450px;
+  overflow-y: auto;
 `;
 
 const Total = styled.div`
