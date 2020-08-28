@@ -7,7 +7,10 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         [action.item.id]: {
           ...action.item,
-          quantity: 1,
+          quantity:
+            state[action.item.id] && state[action.item.id].quantity
+              ? parseInt(state[action.item.id].quantity) + 1
+              : 1,
         },
       };
     case "DELETE_ITEM":
@@ -17,9 +20,20 @@ export default function cartReducer(state = initialState, action) {
       return {
         ...stateCopy,
       };
+    case "UPDATE_QUANTITY":
+      console.log(state, action);
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          quantity: parseInt(action.newQuantity),
+        },
+      };
     default:
       return state;
   }
 }
 
-export const getStoreItemArray = (state) => Object.values(state);
+export const getStoreItemArray = (state) => {
+  return Object.values(state);
+};

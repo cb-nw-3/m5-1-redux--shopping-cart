@@ -5,7 +5,7 @@ import { addItem } from "./actions";
 
 import Button from "./Button";
 
-const StoreItem = ({ id, title, src, price }) => {
+const StoreItem = ({ id, title, src, price, quantity }) => {
   const dispatch = useDispatch();
   const formattedPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -18,7 +18,11 @@ const StoreItem = ({ id, title, src, price }) => {
         <Image src={src} alt={`${title} sticker`} />
       </ImageWrapper>
       <Title>{title}</Title>
-      <Button onClick={() => dispatch(addItem({ id, title, price }))}>
+      <Button
+        onClick={() => {
+          dispatch(addItem({ id, title, price }));
+        }}
+      >
         Add to Cart — {formattedPrice}
       </Button>
     </Wrapper>

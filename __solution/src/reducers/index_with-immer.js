@@ -1,4 +1,4 @@
-import produce from 'immer';
+import produce from "immer";
 
 const initialState = {
   items: {},
@@ -6,8 +6,8 @@ const initialState = {
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
-    case 'ADD_ITEM': {
-      return produce(state, draftState => {
+    case "ADD_ITEM": {
+      return produce(state, (draftState) => {
         // Check if we already have >=1 of these items
         const alreadyHasItem = !!draftState.items[action.item.id];
 
@@ -22,21 +22,21 @@ export default function cartReducer(state = initialState, action) {
       });
     }
 
-    case 'REMOVE_ITEM': {
-      return produce(state, draftState => {
+    case "REMOVE_ITEM": {
+      return produce(state, (draftState) => {
         delete draftState.items[action.itemId];
       });
     }
 
-    case 'UPDATE_QUANTITY': {
+    case "UPDATE_QUANTITY": {
       const { itemId, newQuantity } = action;
 
-      return produce(state, draftState => {
+      return produce(state, (draftState) => {
         draftState.items[itemId].quantity = newQuantity;
       });
     }
 
-    case 'CLEAR_CART': {
+    case "CLEAR_CART": {
       return initialState;
     }
 
@@ -45,8 +45,8 @@ export default function cartReducer(state = initialState, action) {
   }
 }
 
-export const getItemArray = state => Object.values(state.items);
-export const getSubtotal = state =>
+export const getItemArray = (state) => Object.values(state.items);
+export const getSubtotal = (state) =>
   getItemArray(state).reduce(
     (acc, item) => acc + item.price * item.quantity,
     0

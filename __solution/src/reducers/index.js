@@ -2,7 +2,7 @@ const initialState = {};
 
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
-    case 'ADD_ITEM': {
+    case "ADD_ITEM": {
       return {
         ...state,
         [action.item.id]: {
@@ -15,24 +15,27 @@ export default function cartReducer(state = initialState, action) {
       };
     }
 
-    case 'UPDATE_QUANTITY': {
+    case "UPDATE_QUANTITY": {
       const { itemId, newQuantity } = action;
       return {
         ...state,
-        [itemId]: {
-          ...state[itemId],
-          quantity: newQuantity,
+        [action.item.id]: {
+          ...action.item,
+          quantity:
+            state[action.item.id] && state[action.item.id].quantity
+              ? state[action.item.id].quantity + 1
+              : 1,
         },
       };
     }
 
-    case 'REMOVE_ITEM': {
+    case "REMOVE_ITEM": {
       const newCart = { ...state };
       delete newCart[action.itemId];
       return newCart;
     }
 
-    case 'CLEAR_CART': {
+    case "CLEAR_CART": {
       return initialState;
     }
 

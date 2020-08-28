@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { deleteItem } from "./actions";
-import { useDispatch } from "react-redux";
+import { updateQuantity, deleteItem } from "./actions";
+import { useDispatch, useSelector } from "react-redux";
 
-const CartItem = ({ title = "Item title", quantity = 1, id }) => {
+const CartItem = ({ title = "Item title", id }) => {
   const dispatch = useDispatch();
+  const quantity = useSelector((state) => state[id].quantity);
   return (
     <Wrapper>
       <div
@@ -43,7 +44,8 @@ const CartItem = ({ title = "Item title", quantity = 1, id }) => {
             name="qty"
             min="1"
             max="999"
-            value={1}
+            value={quantity}
+            onChange={(e) => dispatch(updateQuantity(id, e.target.value))}
           />
         </Frame>
       </div>

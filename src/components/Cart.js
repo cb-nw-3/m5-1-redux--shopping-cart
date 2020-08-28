@@ -5,7 +5,7 @@ import Buttom from "./Button";
 import { useSelector } from "react-redux";
 import { getStoreItemArray } from "../reducers";
 const Cart = () => {
-  const state = useSelector((state) => state);
+  // const state = useSelector((state) => state);
 
   const storeItems = useSelector(getStoreItemArray);
   const formattedPrice = new Intl.NumberFormat("en-US", {
@@ -17,14 +17,9 @@ const Cart = () => {
       <Title>Your Cart</Title>
       <p>{storeItems.length} Items</p>
       <ItemsWrapper>
-        {storeItems.map((element, index) => (
-          <CartItem
-            key={index}
-            title={element.title}
-            quantity={element.quantity}
-            id={element.id}
-          />
-        ))}
+        {storeItems.map((element, index) => {
+          return <CartItem key={index} title={element.title} id={element.id} />;
+        })}
       </ItemsWrapper>
       <div
         style={{
