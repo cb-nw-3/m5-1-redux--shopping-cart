@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 const CartItem = ({ item }) => {
-  console.log("item from cartItem", item);
   const [itemQuantity, setItemQuantity] = React.useState(item.quantity);
 
   React.useEffect(() => {

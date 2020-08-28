@@ -8,13 +8,31 @@ import { useSelector } from "react-redux";
 const Cart = () => {
   const state = useSelector((state) => state);
   const storeItems = useSelector(getStoreItemArray);
-  console.log("store items", storeItems);
+
+  const calculateTotalItems = (arr) => {
+    let totalItems = 0;
+
+    arr.forEach((item) => {
+      totalItems += item.quantity;
+    });
+    return totalItems;
+  };
+
+  const calculateTotalPrice = (arr) => {
+    let totalPrice = 0;
+
+    arr.forEach((item) => {
+      totalPrice += item.quantity * item.price;
+    });
+    return <span>${totalPrice / 100}</span>;
+  };
 
   return (
     <StyledDiv>
       <div style={{ margin: "20px" }}>
         <StyledH1>Your cart</StyledH1>
-        <StyledP>0 items</StyledP>
+
+        <StyledP>{calculateTotalItems(storeItems)} items</StyledP>
       </div>
       <ul
         style={{
@@ -43,7 +61,7 @@ const Cart = () => {
           width: "360px",
         }}
       >
-        <StyledP>Total: {}</StyledP>
+        <StyledP>Total: {calculateTotalPrice(storeItems)}</StyledP>
         <Button style={{ width: "120px", height: "40px" }}>Purchase</Button>
       </div>
     </StyledDiv>
