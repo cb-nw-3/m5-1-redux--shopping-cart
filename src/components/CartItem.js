@@ -1,15 +1,16 @@
 import React from "react";
 import styled from 'styled-components';
 
-const CartItem = () => {
+const CartItem = (props) => {
+  let itemName = props.item.id.charAt(0).toUpperCase() + props.item.id.slice(1);
   return (
     <Wrapper>
       <ItemHead>
-        <ItemName>Item </ItemName>
+        <ItemName>{itemName}</ItemName>
         <RemoveButton>X</RemoveButton>
       </ItemHead>
       <ItemQuantity>
-        Quantity: <ItemAmount>X</ItemAmount>
+        Quantity: <ItemAmount>{props.item.quantity}</ItemAmount>
       </ItemQuantity>
     </Wrapper>
   );
