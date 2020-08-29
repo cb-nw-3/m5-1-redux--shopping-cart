@@ -1,14 +1,25 @@
 import React from "react";
 import styled from "styled-components";
+import { removeItem } from '../actions';
+import { useDispatch } from "react-redux";
 
-const CartItem = () => {
+const CartItem = (props) => {
+  const dispatch = useDispatch();
+  const price = props.price
+  
+  const formattedPrice = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+  }).format(price / 100);
   return (
     <Wrapper>
       <Wrap>
-        <Head>Hello World</Head>
-        <Btn>X</Btn>
+  <Head>{props.title}</Head>
+        <Btn onClick={() => {
+          dispatch(removeItem({ id: props.id, title: props.title, price: props.price }))
+        }}>X</Btn>
       </Wrap>
-      <Quantity>Quantity: 1</Quantity>
+  <Quantity>Price: {formattedPrice}</Quantity>
     </Wrapper>
   );
 };
