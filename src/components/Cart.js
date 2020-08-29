@@ -21,6 +21,7 @@ const Cart = () => {
             key={item.id}
             quantity={item.quantity}
             title={item.title}
+            id={item.id}
           ></CartItem>
         ))}
       </Top>
