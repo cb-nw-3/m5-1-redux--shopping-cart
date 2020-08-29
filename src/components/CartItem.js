@@ -1,18 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 
-const CartItem = () => {
+const CartItem = ({ quantity, title }) => {
+  console.log(quantity);
   return (
     <Wrapper>
       <Top>
-        <ItemName>Hello World</ItemName>
+        <ItemName>{title}</ItemName>
         <Button onClick={() => console.log("Item removed successfully")}>
           X
         </Button>
       </Top>
       <Bottom>
         <ItemQty>
-          Quantity:<ItemQtyNum>1</ItemQtyNum>
+          Quantity:<ItemQtyNum>{quantity}</ItemQtyNum>
         </ItemQty>
       </Bottom>
     </Wrapper>
