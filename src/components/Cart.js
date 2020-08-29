@@ -1,22 +1,47 @@
 import React from "react";
 import styled from "styled-components";
 
-import CartItem from './CartItem';
-import { getStoreItemArray } from '../reducers/index';
-import { useSelector } from 'react-redux';
+import CartItem from "./CartItem";
+import { getStoreItemArray } from "../reducers/index";
+import { useSelector } from "react-redux";
 
 const Cart = () => {
   const state = useSelector(getStoreItemArray);
-console.log(state)
+  let amountOfItems =
+    state.length !== 0
+      ? state.reduce((amount, item) => {
+          return amount + item.quantity;
+        }, 0)
+      : 0;
+  let priceOfItems =
+    state.length !== 0
+      ? state.reduce((price, item) => {
+          return price + item.price;
+        }, 0)
+      : 0;
+  let truePriceOfItems =
+    priceOfItems !== 0
+      ? priceOfItems.toString().slice(0, -2) +
+        "." +
+        priceOfItems.toString().slice(-2)
+      : "00.00";
   return (
     <Wrapper>
       <CartHeading>
-        <CartHeading>Your Cart</CartHeading>
-        <CartDescription>X Item</CartDescription>
+        <CartHeader>Your Cart</CartHeader>
+        <CartDescription>
+          {amountOfItems} {amountOfItems > 1 ? "Items" : "Item"}
+        </CartDescription>
+        {state.map((cartItem) => {
+          return (
+            <>
+              <CartItem item={cartItem} key={cartItem.id} />
+            </>
+          );
+        })}
       </CartHeading>
-      <CartItemWrapper><CartItem /></CartItemWrapper>
       <CartFooter>
-        <CartPrice>Total: $00.00</CartPrice>
+        <CartPrice>Total: ${truePriceOfItems}</CartPrice>
         <CartButton>Purchase</CartButton>
       </CartFooter>
     </Wrapper>
@@ -24,27 +49,32 @@ console.log(state)
 };
 
 const Wrapper = styled.div`
-display: flex;
-flex-direction: column;
-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
   background: purple;
   height: 100vh;
   position: fixed;
   padding: 20px;
 `;
-const CartHeading = styled.h2`
+const CartHeader = styled.h2`
   color: white;
   margin: 0;
-  flex: 2;
+`;
+const CartHeading = styled.div`
+  color: white;
+  margin: 0;
+  flex: 11;
+  overflow-y: scroll;
 `;
 const CartDescription = styled.p`
   color: #eee;
-`
+`;
 const CartPrice = styled.p`
   color: white;
   height: 20px;
   margin: 15px;
-`
+`;
 const CartButton = styled.button`
   width: 150px;
   background-color: pink;
@@ -52,16 +82,16 @@ const CartButton = styled.button`
   border-radius: 10px;
   border: none;
   height: 50px;
-`
+`;
 const CartFooter = styled.div`
-flex: 1;
+  flex: 1;
   display: flex;
   justify-content: space-between;
   margin-bottom: 50px;
   align-items: flex-start;
-`
+`;
 const CartItemWrapper = styled.div`
   flex: 9;
-`
+`;
 
 export default Cart;
