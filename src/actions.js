@@ -12,3 +12,8 @@ export const updateQuantity = item => ({
   type: 'UPDATE_QUANTITY',
   item,
 })
+
+export const clearState = item => ({
+  type: 'CLEAR_QUANTITY',
+  item,
+})

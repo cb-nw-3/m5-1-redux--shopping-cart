@@ -7,15 +7,17 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         [action.item.id]: {
           ...action.item,
-          quantity: state[action.item.id] ? state[action.item.id].quantity + 1 : 1,
+          quantity: state[action.item.id]
+            ? state[action.item.id].quantity + 1
+            : 1,
         },
       };
     }
     case "REMOVE_ITEM": {
       const stateCopy = { ...state };
-      delete stateCopy[action.item.id]
+      delete stateCopy[action.item.id];
       return {
-        ...stateCopy
+        ...stateCopy,
       };
     }
     case "UPDATE_QUANTITY": {
@@ -26,6 +28,9 @@ export default function cartReducer(state = initialState, action) {
           quantity: action.item.quantity,
         },
       };
+    }
+    case "CLEAR_QUANTITY": {
+      return {};
     }
     default:
       return state;

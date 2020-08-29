@@ -4,9 +4,13 @@ import styled from "styled-components";
 import CartItem from "./CartItem";
 import { getStoreItemArray } from "../reducers/index";
 import { useSelector } from "react-redux";
+import { useDispatch } from 'react-redux';
+import { clearState } from '../actions';
+
 
 const Cart = () => {
   const state = useSelector(getStoreItemArray);
+  const dispatch = useDispatch();
   let amountOfItems =
     state.length !== 0
       ? state.reduce((amount, item) => {
@@ -29,6 +33,9 @@ const Cart = () => {
     <Wrapper>
       <CartHeading>
         <CartHeader>Your Cart</CartHeader>
+        <ClearCartButton onClick={() => {
+          dispatch(clearState())
+        }}>Clear Cart</ClearCartButton>
         <CartDescription>
           {amountOfItems} {amountOfItems > 1 ? "Items" : "Item"}
         </CartDescription>
@@ -90,8 +97,7 @@ const CartFooter = styled.div`
   margin-bottom: 50px;
   align-items: flex-start;
 `;
-const CartItemWrapper = styled.div`
-  flex: 9;
-`;
+const ClearCartButton = styled.button`
 
+`
 export default Cart;
