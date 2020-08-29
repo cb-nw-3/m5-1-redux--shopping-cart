@@ -17,7 +17,7 @@ const Cart = () => {
   let priceOfItems =
     state.length !== 0
       ? state.reduce((price, item) => {
-          return price + item.price;
+          return price + item.price * item.quantity;
         }, 0)
       : 0;
   let truePriceOfItems =

@@ -2,12 +2,15 @@ import React from "react";
 import styled from 'styled-components';
 
 import { useDispatch } from 'react-redux';
-import { removeItem } from '../actions';
+import { removeItem, updateQuantity } from '../actions';
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
   let itemName = props.item.id.charAt(0).toUpperCase() + props.item.id.slice(1);
+  console.log('props', props)
   let id = props.item.id;
+  let quantity = props.item.quantity;
+  console.log('itemqty', quantity)
   return (
     <Wrapper>
       <ItemHead>
@@ -17,7 +20,9 @@ const CartItem = (props) => {
         }}>X</RemoveButton>
       </ItemHead>
       <ItemQuantity>
-        Quantity: {props.item.quantity}
+        Quantity: <input type='number' value={props.item.quantity} onChange={() => {
+          dispatch(updateQuantity({ id, quantity }))
+        }}></input>
       </ItemQuantity>
     </Wrapper>
   );
