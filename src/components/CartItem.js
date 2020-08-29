@@ -1,8 +1,8 @@
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { useDispatch } from 'react-redux';
-import { removeItem, updateQuantity } from '../actions';
+import { useDispatch } from "react-redux";
+import { removeItem, updateQuantity } from "../actions";
 
 const CartItem = (props) => {
   const dispatch = useDispatch();
@@ -12,15 +12,30 @@ const CartItem = (props) => {
     <Wrapper>
       <ItemHead>
         <ItemName>{itemName}</ItemName>
-        <RemoveButton onClick={() => {
-          dispatch(removeItem({ id }))
-        }}>X</RemoveButton>
+        <RemoveButton
+          onClick={() => {
+            dispatch(removeItem({ id }));
+          }}
+        >
+          X
+        </RemoveButton>
       </ItemHead>
       <ItemQuantity>
-        Quantity: <input type='number' value={props.item.quantity} onChange={(e) => {
-          let quantity = parseInt(e.target.value);
-          dispatch(updateQuantity({ id, quantity }))
-        }}></input>
+        Quantity:{" "}
+        <input
+          type="number"
+          min={"0"}
+          value={props.item.quantity}
+          onChange={(e) => {
+            if (parseInt(e.target.value) === 0) {
+              console.log('removeactivated')
+              dispatch(removeItem({ id }));
+            } else {
+              let quantity = parseInt(e.target.value);
+              dispatch(updateQuantity({ id, quantity }));
+            }
+          }}
+        ></input>
       </ItemQuantity>
     </Wrapper>
   );
@@ -32,24 +47,24 @@ const ItemHead = styled.div`
   align-items: center;
   height: 50px;
   margin: 10px;
-`
+`;
 const ItemName = styled.p`
   color: white;
-`
+`;
 const RemoveButton = styled.button`
   color: white;
   height: 50px;
   width: 50px;
-`
+`;
 const ItemQuantity = styled.div`
   display: flex;
   align-items: center;
   height: 65px;
   margin: 10px;
   color: #ddd;
-`
+`;
 const Wrapper = styled.div`
   border: 2px dashed gray;
-`
+`;
 
 export default CartItem;
