@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
-import { removeItem } from "../actions";
+import { useDispatch, useSelector } from "react-redux";
+import { removeItem, updateItem } from "../actions";
 
 const CartItem = ({ quantity, title, id }) => {
   const dispatch = useDispatch();
+  const itemQuantity = useSelector((state) => state[id].quantity);
 
   console.log(quantity);
+
   return (
     <Wrapper>
       <Top>
@@ -15,7 +17,12 @@ const CartItem = ({ quantity, title, id }) => {
       </Top>
       <Bottom>
         <ItemQty>
-          Quantity:<ItemQtyNum>{quantity}</ItemQtyNum>
+          Quantity:
+          <ItemQtyNum
+            type="text"
+            value={itemQuantity}
+            onChange={(ev) => dispatch(updateItem(id, ev.target.value))}
+          ></ItemQtyNum>
         </ItemQty>
       </Bottom>
     </Wrapper>
@@ -34,7 +41,8 @@ const Button = styled.button`
   border: 0;
 `;
 const ItemQty = styled.div``;
-const ItemQtyNum = styled.span`
+
+const ItemQtyNum = styled.input`
   background: white;
   color: purple;
   padding: 5px;

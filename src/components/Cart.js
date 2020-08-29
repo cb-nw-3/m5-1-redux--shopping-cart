@@ -2,12 +2,14 @@ import React from "react";
 import CartItem from "./CartItem";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { getStoreItemArray } from "../reducers";
+import { getStoreItemArray, getTotal } from "../reducers";
 
 const Cart = () => {
   //   const state = useSelector((state) => state);
   const storeItems = useSelector(getStoreItemArray);
-  console.log(storeItems);
+  const subtotal = useSelector(getTotal);
+
+  //   console.log(storeItems);
 
   return (
     <Wrapper>
@@ -27,7 +29,7 @@ const Cart = () => {
       </Top>
 
       <Bottom>
-        <Total>Total: $12.34</Total>
+        <Total>Total: ${subtotal}</Total>
         <Button>Purchase</Button>
       </Bottom>
     </Wrapper>
