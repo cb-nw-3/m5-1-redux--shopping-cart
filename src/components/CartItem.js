@@ -1,16 +1,23 @@
 import React from "react";
 import styled from 'styled-components';
 
+import { useDispatch } from 'react-redux';
+import { removeItem } from '../actions';
+
 const CartItem = (props) => {
+  const dispatch = useDispatch();
   let itemName = props.item.id.charAt(0).toUpperCase() + props.item.id.slice(1);
+  let id = props.item.id;
   return (
     <Wrapper>
       <ItemHead>
         <ItemName>{itemName}</ItemName>
-        <RemoveButton>X</RemoveButton>
+        <RemoveButton onClick={() => {
+          dispatch(removeItem({ id }))
+        }}>X</RemoveButton>
       </ItemHead>
       <ItemQuantity>
-        Quantity: <ItemAmount>{props.item.quantity}</ItemAmount>
+        Quantity: {props.item.quantity}
       </ItemQuantity>
     </Wrapper>
   );
@@ -40,11 +47,6 @@ const ItemQuantity = styled.div`
 `
 const Wrapper = styled.div`
   border: 2px dashed gray;
-`
-const ItemAmount = styled.div`
-  background: white;
-  height: 50px;
-  width: 50px;
 `
 
 export default CartItem;
