@@ -3,8 +3,6 @@ const initialState = {};
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_ITEM": {
-      console.log('action', action)
-      console.log('action', state)
       return {
         ...state,
         [action.item.id]: {
@@ -24,7 +22,7 @@ export default function cartReducer(state = initialState, action) {
       return {
         ...state,
         [action.item.id]: {
-          ...action.item,
+          ...state[action.item.id],
           quantity: action.item.quantity,
         },
       };

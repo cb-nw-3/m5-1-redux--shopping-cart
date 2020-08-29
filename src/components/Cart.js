@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 const Cart = () => {
   const state = useSelector(getStoreItemArray);
-  console.log(state)
   let amountOfItems =
     state.length !== 0
       ? state.reduce((amount, item) => {
