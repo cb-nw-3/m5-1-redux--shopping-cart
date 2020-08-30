@@ -72,6 +72,23 @@ function reducer(state, action) {
   if (action.type === "REMOVE_RACER_FROM_TEAM") {
     const { teamId, racerName } = action;
 
+    const newRacers = {
+      ..state.competetitors[teamid].racers
+    };
+
+    delete newRacer[racername]
+
+    return {
+      ...state
+      competitior:{
+        ...state.competitors
+        [state.competitors[teamId]]: {
+
+        }
+      }
+    }
+
+    //todo
     delete state.competitors[teamId].racers[racerName];
 
     return state;
@@ -148,6 +165,22 @@ function reducer(state, action) {
     return state;
   }
 }
+
+//solution
+
+const initialState = {
+  name: "Arnold",
+  headShape: "football",
+  bestFriend: null,
+};
+
+function reducer(state, action) {
+  if (action.type === "MAKE_FRIEND") {
+    return produce(state, (draftState) => {
+      draftState.bestFriend = action.gerald.firstName;
+    });
+  }
+}
 ```
 
 ---
@@ -200,6 +233,38 @@ function reducer(state, action) {
     delete state.competitors[teamId].racers[racerName];
 
     return state;
+  }
+}
+
+//solution
+const initialState = {
+  raceBeganAt: "2020-03-27T12:34:56.000Z",
+  competitors: {
+    orangers: {
+      racers: {
+        clementin: {},
+        tangerin: {},
+      },
+    },
+    teamGalactic: {
+      racers: {
+        speedy: {},
+        rapidly: {},
+        swiftly: {},
+      },
+    },
+  },
+};
+
+function reducer(state, action) {
+  if (action.type === "REMOVE_RACER_FROM_TEAM") {
+    return produce(state, (draftState) => {
+      const { teamId, racerName } = action;
+
+      delete draftState.competitors[teamId].racers[racerName];
+
+      return draftState;
+    });
   }
 }
 ```

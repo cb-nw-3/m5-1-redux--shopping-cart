@@ -105,8 +105,9 @@ import { Provider } from "react-redux";
 
 import App from "./components/App";
 
-const store = ReactDOM.render(
-  // All the create-store stuff
+//const store = // All the create-store stuff
+
+ReactDOM.render(
   <Provider store={store}>
     <App />
   </Provider>,
@@ -162,16 +163,16 @@ Our state shape:
 */
 
 const FridgeContents = () => {
-  const fridgeItems = /* TODO */
+  const fridgeItems = useSelector((state) => {
+    return state.fridge;
+  });
 
   return (
     <div>
       <h1>Your fridge contains:</h1>
 
-      {fridgeItems.map(item => (
-        <div key={item}>
-          {item}
-        </div>
+      {fridgeItems.map((item) => (
+        <div key={item}>{item}</div>
       ))}
     </div>
   );
@@ -208,6 +209,10 @@ const App = () => {
   // in our BOYFRIEND's favourite genre.
   // (Terror at Jarry Park)
   const movie = /* TODO */
+
+  const movie = useSelector((state) =>{
+    return state.myFavouriteMovies[state.boyfriendFavouriteGenre]
+  })
 
   return (
     <div>
@@ -325,7 +330,7 @@ import { useDispatch } from "react-redux";
 import { pokeUser } from "../actions";
 
 const OnlineUsers = () => {
-  // TODO: Something missing here...
+  const dispatch = useDispatch();
 
   const onlineUsers = useSelector((state) => {
     return state.users.filter((user) => user.online);
@@ -333,7 +338,13 @@ const OnlineUsers = () => {
 
   return onlineUsers.map((user) => (
     <div key={user.name}>
-      <button onClick={/* TODO */}>Message {user.name}</button>
+      <button
+        onClick={() => {
+          dispatch(pokeUser(user));
+        }}
+      >
+        Message {user.name}
+      </button>
     </div>
   ));
 };
@@ -353,7 +364,8 @@ const FridgeForm = () => {
   return (
     <form
       onSubmit={() => {
-        /* TODO */
+        dispatch(addItemToFridge(value)
+        setValue('')
       }}
     >
       <input type="text" onChange={(ev) => setValue(ev.target.value)} />
