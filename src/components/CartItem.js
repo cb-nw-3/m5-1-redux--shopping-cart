@@ -17,7 +17,11 @@ const CartItem = ({ id, price, quantity, title }) => {
       </Item>
       <QuantityDiv>
         Quantity:
-        <InputNum type="number" value={quantity}></InputNum>
+        <InputNum
+          type="number"
+          value={quantity}
+          onChange={(ev) => dispatch(updateQuantity(id, ev.target.value))}
+        ></InputNum>
       </QuantityDiv>
     </Wrapper>
   );
@@ -58,7 +62,7 @@ const QuantityDiv = styled.div`
 `;
 
 const InputNum = styled.input`
-  width: 25px;
+  width: 30px;
   height: 25px;
   color: white;
   text-align: center;

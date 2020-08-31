@@ -14,10 +14,10 @@ const Cart = () => {
     totalPrice += storeItem.price;
   });
 
-  const formattedPrice = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(totalPrice / 100);
+  // const formattedPrice = new Intl.NumberFormat("en-US", {
+  //   style: "currency",
+  //   currency: "USD",
+  // }).format(totalPrice / 100);
 
   const priceFormatted = (price) =>
     (price / 100).toLocaleString("en-US", {
@@ -25,7 +25,6 @@ const Cart = () => {
       currency: "USD",
     });
 
-  console.log(storeItems);
   return (
     <Wrapper>
       <CartHeader>
