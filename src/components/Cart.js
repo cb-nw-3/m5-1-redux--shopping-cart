@@ -3,10 +3,11 @@ import styled from "styled-components";
 import Button from "./Button";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
-import { getStoreItemArray } from "../reducers";
+import { getStoreItemArray, getSubtotal } from "../reducers";
 
 const Cart = () => {
   const storeItems = useSelector(getStoreItemArray);
+  const subtotal = useSelector(getSubtotal);
 
   let totalPrice = 0;
   storeItems.forEach((storeItem) => {
@@ -18,12 +19,18 @@ const Cart = () => {
     currency: "USD",
   }).format(totalPrice / 100);
 
+  const priceFormatted = (price) =>
+    (price / 100).toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+
   console.log(storeItems);
   return (
     <Wrapper>
       <CartHeader>
         <CartTitle>Your Cart</CartTitle>
-        <CartItemNumber>{storeItems.length} Items</CartItemNumber>
+        <CartItemNumber>{storeItems.length} Item(s)</CartItemNumber>
         <CartList>
           {storeItems &&
             storeItems.map((storeItem) => {
@@ -41,7 +48,7 @@ const Cart = () => {
       </CartHeader>
       <CartCheckout>
         <CartTotal>
-          Total:<Total>{formattedPrice}</Total>
+          Total:<Total>{priceFormatted(subtotal)}</Total>
         </CartTotal>
         <PurchaseButton>Purchase</PurchaseButton>
       </CartCheckout>

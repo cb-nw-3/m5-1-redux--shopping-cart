@@ -1,11 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../actions";
+import { updateQuantity, removeItem } from "../actions";
 
 const CartItem = ({ id, price, quantity, title }) => {
   const dispatch = useDispatch();
-
   return (
     <Wrapper>
       <Item>

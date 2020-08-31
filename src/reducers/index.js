@@ -7,7 +7,20 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         [action.item.id]: {
           ...action.item,
-          quantity: 1,
+          quantity:
+            state[action.item.id] && state[action.item.id].quantity
+              ? state[action.item.id].quantity + 1
+              : 1,
+        },
+      };
+    }
+    case "UPDATE_QUANTITY": {
+      const { itemId, newQuantity } = action;
+      return {
+        ...state,
+        [itemId]: {
+          ...state[itemId],
+          quantity: newQuantity,
         },
       };
     }
@@ -18,9 +31,16 @@ export default function cartReducer(state = initialState, action) {
 
       return stateCopy;
     }
+
     default:
       return state;
   }
 }
 
 export const getStoreItemArray = (state) => Object.values(state);
+
+export const getSubtotal = (state) =>
+  getStoreItemArray(state).reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
