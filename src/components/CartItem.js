@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { removeItem, updateQuantity } from "../actions";
 
 const CartItem = (props) => {
-  console.log(props)
+  console.log(props);
   const dispatch = useDispatch();
   let id = props.item.id;
   return (
@@ -28,7 +28,7 @@ const CartItem = (props) => {
           value={props.item.quantity}
           onChange={(e) => {
             if (parseInt(e.target.value) === 0) {
-              console.log('removeactivated')
+              console.log("removeactivated");
               dispatch(removeItem({ id }));
             } else {
               let quantity = parseInt(e.target.value);
@@ -91,7 +91,6 @@ const StyledInput = styled.input`
   margin: 0;
   padding-left: 10px;
   margin-left: 10px;
-
-`
+`;
 
 export default CartItem;
