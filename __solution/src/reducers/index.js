@@ -19,12 +19,9 @@ export default function cartReducer(state = initialState, action) {
       const { itemId, newQuantity } = action;
       return {
         ...state,
-        [action.item.id]: {
-          ...action.item,
-          quantity:
-            state[action.item.id] && state[action.item.id].quantity
-              ? state[action.item.id].quantity + 1
-              : 1,
+        [itemId]: {
+          ...state[itemId],
+          quantity: newQuantity,
         },
       };
     }

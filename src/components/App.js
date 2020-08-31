@@ -16,7 +16,6 @@ const App = () => {
         <ItemGridWrapper>
           <ItemGrid />
         </ItemGridWrapper>
-
         <GlobalStyles />
       </Wrapper>
       <Cart />

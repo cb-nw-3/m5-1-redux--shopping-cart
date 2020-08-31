@@ -9,8 +9,9 @@ const store = createStore(
   reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
-const rootElement = document.getElementById("root");
 
+const rootElement = document.getElementById("root");
+console.log(store.getState());
 ReactDOM.render(
   <Provider store={store}>
     <App />

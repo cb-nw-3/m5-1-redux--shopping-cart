@@ -3,11 +3,12 @@ import styled from "styled-components";
 import CartItem from "./CartItem";
 import Buttom from "./Button";
 import { useSelector } from "react-redux";
-import { getStoreItemArray } from "../reducers";
+import { getStoreItemArray } from "../reducers/cart";
 import Close from "./Close";
+import ProvinceSelect from "./ProvinceSelect";
 
 const Cart = () => {
-  // const state = useSelector((state) => state);
+  const { state } = useSelector((state) => state);
 
   const storeItems = useSelector(getStoreItemArray);
   const formattedPrice = new Intl.NumberFormat("en-US", {
@@ -29,11 +30,17 @@ const Cart = () => {
         <p>{storeItems.length} Items</p>
         <Close />
       </div>
-      <ItemsWrapper>
-        {storeItems.map((element, index) => {
-          return <CartItem key={index} title={element.title} id={element.id} />;
-        })}
-      </ItemsWrapper>
+      <ProvinceSelect />
+      {Object.keys(state).length !== 0 && (
+        <ItemsWrapper>
+          {storeItems.map((element, index) => {
+            return (
+              <CartItem key={index} title={element.title} id={element.id} />
+            );
+          })}
+        </ItemsWrapper>
+      )}
+      <Subtotal>{formattedPrice}</Subtotal>
       <div
         style={{
           display: "flex",
@@ -87,6 +94,16 @@ const Total = styled.div`
   &::before {
     color: gray;
     content: "Total: ";
+  }
+`;
+
+const Subtotal = styled.div`
+  font-size: 1.2rem;
+  width: 260px;
+  padding: 50px 0;
+  &::before {
+    color: gray;
+    content: "Tax: ";
   }
 `;
 

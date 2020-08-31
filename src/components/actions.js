@@ -13,3 +13,8 @@ export const updateQuantity = (id, newQuantity) => ({
   id,
   newQuantity,
 });
+
+export const setTax = (tax) => ({
+  type: "SET_TAX",
+  tax,
+});

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { updateQuantity } from "./actions";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,7 +6,9 @@ import Close from "./Close";
 
 const CartItem = ({ title = "Item title", id }) => {
   const dispatch = useDispatch();
-  const quantity = useSelector((state) => state[id].quantity);
+  const { state } = useSelector((state) => state);
+
+  const quantity = state[id].quantity;
   return (
     <Wrapper>
       <div
@@ -21,6 +23,7 @@ const CartItem = ({ title = "Item title", id }) => {
         <Title>{title}</Title>
         <Close id={id} />
       </div>
+
       <div
         style={{
           display: "flex",
