@@ -2,19 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import CartItem from "./CartItem";
 import { useSelector } from "react-redux";
-import { getStoreItemArray } from "../reducers/index";
 import { removeItem } from "../actions";
 import { useDispatch } from "react-redux";
 
+function json2array(json) {
+  var result = [];
+  var keys = Object.keys(json);
+  keys.forEach(function (key) {
+    result.push(json[key]);
+  });
+  return result;
+}
+
 const CartSideBar = () => {
-  const state = useSelector(getStoreItemArray);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
+  let items = json2array(state);
+
   const deleteItem = (id) => {
     dispatch(removeItem(id));
   };
+
   const updatePrice = () => {
     let totalPrice = 0;
-    state.forEach((element) => {
+    items.forEach((element) => {
       totalPrice += element.price * element.quantity;
     });
     return totalPrice;
@@ -27,11 +38,11 @@ const CartSideBar = () => {
           <TitleAndItem>
             <Title>Your Cart</Title>
             <CartTopItemCount>
-              {state.length} {state.length == 1 ? "item" : "items"}{" "}
+              {items.length} {items.length == 1 ? "item" : "items"}{" "}
             </CartTopItemCount>
           </TitleAndItem>
           <CartPurchase>
-            {state.map((item) => {
+            {items.map((item) => {
               return (
                 <CartItem
                   key={item.id}

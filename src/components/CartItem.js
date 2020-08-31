@@ -9,10 +9,6 @@ const CartItem = (props) => {
   const itemQuantity = useSelector((state) => state[id].quantity);
   const dispatch = useDispatch();
 
-  const handler = (ev) => {
-    console.log(ev);
-  };
-
   return (
     <Item>
       <CartTitleAndBtn>
