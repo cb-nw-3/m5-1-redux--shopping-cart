@@ -25,7 +25,7 @@ For reference, sales taxes by province:
 | Alberta               | 5%      |
 | British Columbia      | 12%     |
 | Manitoba              | 12%     |
-| New-Bruinswick        | 15%     |
+| New-Brunswick        | 15%     |
 | Newfoundland/Labrador | 15%     |
 | Northwest Territories | 5%      |
 | Nova Scotia           | 15%     |

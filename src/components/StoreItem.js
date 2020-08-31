@@ -1,12 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useSpring, animated } from "react-spring";
 
-import Button from './Button';
+import Button from "./Button";
+import { addItem } from "../actions";
 
 const StoreItem = ({ id, title, src, price }) => {
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  const dispatch = useDispatch();
+
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(price / 100);
 
   return (
@@ -15,7 +20,13 @@ const StoreItem = ({ id, title, src, price }) => {
         <Image src={src} alt={`${title} sticker`} />
       </ImageWrapper>
       <Title>{title}</Title>
-      <Button>Add to Cart — {formattedPrice}</Button>
+      <Button
+        onClick={() => {
+          dispatch(addItem({ id, title, price }));
+        }}
+      >
+        Add to Cart — {formattedPrice}
+      </Button>
     </Wrapper>
   );
 };
@@ -40,6 +51,11 @@ const ImageWrapper = styled.div`
 const Image = styled.img`
   display: block;
   max-width: 100%;
+  transition: transform 400ms;
+
+  &:hover {
+    transform: scale(1.3) rotate(30deg);
+  }
 `;
 
 const Title = styled.h2`
