@@ -45,6 +45,7 @@ const CartWrapper = styled.div`
   border-left: 3px dashed #ff406e;
   padding-left: 8px;
   flex: 1;
+  width: 100%;
 `;
 
 export default App;

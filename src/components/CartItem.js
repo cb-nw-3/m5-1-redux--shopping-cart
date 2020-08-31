@@ -5,13 +5,13 @@ import { useDispatch } from "react-redux";
 import { removeItem, updateQuantity } from "../actions";
 
 const CartItem = (props) => {
+  console.log(props)
   const dispatch = useDispatch();
-  let itemName = props.item.id.charAt(0).toUpperCase() + props.item.id.slice(1);
   let id = props.item.id;
   return (
     <Wrapper>
       <ItemHead>
-        <ItemName>{itemName}</ItemName>
+        <ItemName>{props.item.title}</ItemName>
         <RemoveButton
           onClick={() => {
             dispatch(removeItem({ id }));
@@ -22,7 +22,7 @@ const CartItem = (props) => {
       </ItemHead>
       <ItemQuantity>
         Quantity:{" "}
-        <input
+        <StyledInput
           type="number"
           min={"0"}
           value={props.item.quantity}
@@ -35,7 +35,7 @@ const CartItem = (props) => {
               dispatch(updateQuantity({ id, quantity }));
             }
           }}
-        ></input>
+        ></StyledInput>
       </ItemQuantity>
     </Wrapper>
   );
@@ -52,19 +52,46 @@ const ItemName = styled.p`
   color: white;
 `;
 const RemoveButton = styled.button`
+  background: #401f43;
   color: white;
-  height: 50px;
-  width: 50px;
+  border: none;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  transition: background-color 150ms;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: #29142b;
+  }
 `;
 const ItemQuantity = styled.div`
   display: flex;
   align-items: center;
   height: 65px;
-  margin: 10px;
+  padding: 10px;
   color: #ddd;
+  background-color: #29142b;
 `;
 const Wrapper = styled.div`
   border: 2px dashed gray;
+  margin: 20px 0;
 `;
+const StyledInput = styled.input`
+  width: 50px;
+  height: 50px;
+  border: none;
+  border: 2px solid white;
+  border-radius: 10px;
+  background-color: #29142b;
+  color: white;
+  font-size: 20px;
+  outline: none;
+  text-align: center;
+  margin: 0;
+  padding-left: 10px;
+  margin-left: 10px;
+
+`
 
 export default CartItem;

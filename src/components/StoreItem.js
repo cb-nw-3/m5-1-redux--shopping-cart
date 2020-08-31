@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { useSpring, animated } from 'react-spring';
+import { useSpring, animated } from "react-spring";
 
 import Button from "./Button";
 import { addItem } from "../actions";
@@ -51,6 +51,11 @@ const ImageWrapper = styled.div`
 const Image = styled.img`
   display: block;
   max-width: 100%;
+  transition: transform 400ms;
+
+  &:hover {
+    transform: scale(1.3) rotate(30deg);
+  }
 `;
 
 const Title = styled.h2`
