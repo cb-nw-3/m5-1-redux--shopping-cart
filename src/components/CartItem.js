@@ -28,12 +28,7 @@ const CartItem = ({ item }) => {
           }}
         >
           <StyledH3>{item.title}</StyledH3>
-          <h4
-            style={{ color: "#fff", margin: "0" }}
-            onClick={() => dispatch(removeItem({ item }))}
-          >
-            x
-          </h4>
+          <StyledH4 onClick={() => dispatch(removeItem({ item }))}>x</StyledH4>
         </div>
 
         <div
@@ -69,6 +64,15 @@ const StyledDiv = styled.div`
 const StyledH3 = styled.h3`
   color: #fff;
   margin: 0;
+`;
+
+const StyledH4 = styled.h4`
+  color: #fff;
+  margin: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledLabel = styled.label`
