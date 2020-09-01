@@ -15,7 +15,6 @@ const CartItem = ({ item }) => {
   const handleUserInput = (e) => {
     let input = e.target.value;
     const id = item.id;
-    console.log("input, id", input, id);
     e.preventDefault();
     dispatch(updateQuantity(input, item.id));
   };

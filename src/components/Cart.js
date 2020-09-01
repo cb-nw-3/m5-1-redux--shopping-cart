@@ -10,7 +10,6 @@ const Cart = () => {
   const storeItems = useSelector(getStoreItemArray);
 
   const calculateTotalItems = (arr) => {
-    console.log("array", arr);
     let totalItems = 0;
 
     arr.forEach((item) => {

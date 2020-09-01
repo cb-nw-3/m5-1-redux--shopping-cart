@@ -16,7 +16,6 @@ export default function cartReducer(state = initialState, action) {
 
     case "REMOVE_ITEM":
       return produce(state, (draftState) => {
-        console.log("action", action);
         delete draftState[action.id.item.id];
       });
 
