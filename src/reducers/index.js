@@ -13,11 +13,18 @@ export default function cartReducer(state = initialState, action) {
         : produce(state, (draftState) => {
             draftState[action.item.id].quantity++;
           });
+
     case "REMOVE_ITEM":
       return produce(state, (draftState) => {
         console.log("action", action);
         delete draftState[action.id.item.id];
       });
+
+    case "UPDATE_QUANTITY":
+      return produce(state, (draftState) => {
+        draftState[action.id].quantity = Number(action.input);
+      });
+
     default:
       return state;
   }

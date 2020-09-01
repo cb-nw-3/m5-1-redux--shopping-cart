@@ -1,15 +1,24 @@
 import React from "react";
 import styled from "styled-components";
-import { removeItem } from "../actions";
+import { removeItem, updateQuantity } from "../actions";
 import { useDispatch } from "react-redux";
 
 const CartItem = ({ item }) => {
   const [itemQuantity, setItemQuantity] = React.useState(item.quantity);
+
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     setItemQuantity(item.quantity);
-  });
+  }, [item.quantity]);
+
+  const handleUserInput = (e) => {
+    let input = e.target.value;
+    const id = item.id;
+    console.log("input, id", input, id);
+    e.preventDefault();
+    dispatch(updateQuantity(input, item.id));
+  };
 
   return (
     <StyledDiv>
@@ -46,6 +55,7 @@ const CartItem = ({ item }) => {
               id="fname"
               name="fname"
               value={itemQuantity}
+              onChange={handleUserInput}
             />
           </form>
         </div>
