@@ -13,6 +13,10 @@ export default function cartReducer(state = initialState, action) {
         : produce(state, (draftState) => {
             draftState[action.item.id].quantity++;
           });
+    case "REMOVE_ITEM":
+      return produce(state, (draftState) => {
+        delete draftState[action.item.id];
+      });
     default:
       return state;
   }

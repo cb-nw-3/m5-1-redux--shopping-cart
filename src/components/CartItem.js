@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { removeItem } from "../actions";
+import { useDispatch } from "react-redux";
 
 const CartItem = ({ item }) => {
   const [itemQuantity, setItemQuantity] = React.useState(item.quantity);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     setItemQuantity(item.quantity);
@@ -26,7 +28,12 @@ const CartItem = ({ item }) => {
           }}
         >
           <StyledH3>{item.title}</StyledH3>
-          <h4 style={{ color: "#fff", margin: "0" }}>x</h4>
+          <h4
+            style={{ color: "#fff", margin: "0" }}
+            onClick={() => dispatch(removeItem({ item }))}
+          >
+            x
+          </h4>
         </div>
 
         <div
