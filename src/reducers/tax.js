@@ -1,10 +1,10 @@
-const initialTaxState = 0;
+const initialTaxState = 15;
 
 export default function TaxReducer(state = initialTaxState, action) {
   switch (action.type) {
     case "SET_TAX":
-      return { ...state };
+      return action.tax;
     default:
-      return state;
+      return initialTaxState;
   }
 }

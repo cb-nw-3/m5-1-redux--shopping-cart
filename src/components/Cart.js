@@ -9,12 +9,17 @@ import ProvinceSelect from "./ProvinceSelect";
 
 const Cart = () => {
   const { state } = useSelector((state) => state);
-
+  const { taxReducer } = useSelector((state) => state);
   const storeItems = useSelector(getStoreItemArray);
   const formattedPrice = new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
   }).format(storeItems.reduce(reducer, 0) / 100);
+
+  const formattedTax = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(((storeItems.reduce(reducer, 0) / 100) * taxReducer) / 100);
   return (
     <Wrapper>
       <Title>Your Cart</Title>
@@ -40,7 +45,7 @@ const Cart = () => {
           })}
         </ItemsWrapper>
       )}
-      <Subtotal>{formattedPrice}</Subtotal>
+      <Subtotal>{formattedTax}</Subtotal>
       <div
         style={{
           display: "flex",

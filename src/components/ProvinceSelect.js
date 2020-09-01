@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { setTax } from "./actions";
+import { useDispatch } from "react-redux";
 
 export default function ProvinceSelect() {
+  const dispatch = useDispatch();
   const [selectStatus, setSelectStatus] = useState(true);
   return (
     <Wrapper>
@@ -12,6 +15,7 @@ export default function ProvinceSelect() {
         id="provice"
         onChange={(e) => {
           e.preventDefault();
+          dispatch(setTax(e.target.value));
           setSelectStatus(true);
         }}
       >
@@ -35,7 +39,6 @@ export default function ProvinceSelect() {
         onClick={(e) => {
           e.preventDefault();
           setSelectStatus(false);
-          
         }}
       >
         X
