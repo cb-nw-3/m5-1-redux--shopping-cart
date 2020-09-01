@@ -9,7 +9,7 @@ export default function cartReducer(state = initialState, action) {
         [action.item.id]: {
           ...action.item,
           quantity: state[action.item.id]
-            ? (state[action.item.id].quantity += 1)
+            ? parseInt(state[action.item.id].quantity) + 1
             : 1,
         },
       };

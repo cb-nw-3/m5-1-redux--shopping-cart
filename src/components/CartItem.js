@@ -24,8 +24,12 @@ const CartItem = (props) => {
       <CartLblAndQty>
         <CartLbl>Quantity: </CartLbl>
         <CartQty
+          type="value"
           value={itemQuantity}
-          onChange={(ev) => dispatch(addQuantity(id, ev.target.value))}
+          onChange={(ev) => {
+            ev.target.value = ev.target.value ? parseInt(ev.target.value) : 0;
+            dispatch(addQuantity(id, ev.target.value));
+          }}
         />
       </CartLblAndQty>
     </Item>
@@ -37,6 +41,8 @@ const Item = styled.div`
   flex-direction: column;
   border: 1px solid white;
   flex: 1;
+  margin-right: 3%;
+  margin-bottom: 3%;
 `;
 const CartTitleAndBtn = styled.div`
   display: flex;
