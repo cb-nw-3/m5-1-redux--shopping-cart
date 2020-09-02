@@ -1,13 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem } from "../actions";
 
 const CartItem = ({ item }) => {
   const [itemQuantity, setItemQuantity] = React.useState(item.quantity);
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     setItemQuantity(item.quantity);
   });
+
+  const clickHandler = () => {
+    console.log("click working");
+    console.log(item);
+    dispatch(removeItem(item));
+  };
 
   return (
     <StyledDiv>
@@ -26,7 +34,9 @@ const CartItem = ({ item }) => {
           }}
         >
           <StyledH3>{item.title}</StyledH3>
-          <h4 style={{ color: "#fff", margin: "0" }}>x</h4>
+          <h4 onClick={clickHandler} style={{ color: "#fff", margin: "0" }}>
+            x
+          </h4>
         </div>
 
         <div

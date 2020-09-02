@@ -3,11 +3,11 @@ import ReactDOM from "react-dom";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-import cartReducer from "./reducers";
+import reducer from "./reducers";
 import App from "./components/App";
 
 const store = createStore(
-  cartReducer,
+  reducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

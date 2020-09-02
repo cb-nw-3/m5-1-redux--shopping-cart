@@ -6,7 +6,6 @@ import { getStoreItemArray } from "../reducers/index";
 import { useSelector } from "react-redux";
 
 const Cart = () => {
-  const state = useSelector((state) => state);
   const storeItems = useSelector(getStoreItemArray);
 
   const calculateTotalItems = (arr) => {
