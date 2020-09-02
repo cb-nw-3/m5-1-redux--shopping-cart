@@ -3,7 +3,6 @@ import produce from "immer";
 const initialState = {};
 
 export default function cartReducer(state = initialState, action) {
-  console.log();
   switch (action.type) {
     case "ADD_ITEM":
       return !state[action.item.id]
@@ -22,8 +21,11 @@ export default function cartReducer(state = initialState, action) {
             draftState[action.item.id].quantity--;
           })
         : stateCopy;
+    case "UPDATE_QUANTITY":
+      return produce(state, (draftState) => {
+        draftState[action.item.item.id].quantity = action.item.quantity;
+      });
 
-    //if doesn't exist, remove item
     default:
       return state;
   }

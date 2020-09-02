@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { removeItem } from "../actions";
+import { removeItem, updateQuantity } from "../actions";
 
 const CartItem = ({ item }) => {
+  const state = useSelector((state) => state);
   const [itemQuantity, setItemQuantity] = React.useState(item.quantity);
   const dispatch = useDispatch();
 
@@ -13,7 +14,7 @@ const CartItem = ({ item }) => {
 
   const clickHandler = () => {
     console.log("click working");
-    console.log(item);
+
     dispatch(removeItem(item));
   };
 
@@ -54,6 +55,11 @@ const CartItem = ({ item }) => {
               id="fname"
               name="fname"
               value={itemQuantity}
+              onChange={(e) => {
+                setItemQuantity(e.target.value);
+                const num = e.target.value;
+                dispatch(updateQuantity({ item, quantity: Number(num) }));
+              }}
             />
           </form>
         </div>
