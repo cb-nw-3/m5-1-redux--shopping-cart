@@ -43,7 +43,7 @@ const ItemGridWrapper = styled.main`
 `;
 
 const CartWrapper = styled.div`
-  grid-area: sidebar;
+  grid-area: side;
   border-left: 3px dashed #ff406e;
   padding-left: 8px;
 `;
