@@ -1,27 +1,41 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
+
 import { Icon } from 'react-icons-kit'
 import { ic_close } from 'react-icons-kit/md/ic_close'
 
+import { getStoreItemArray } from '../reducers'
+
 const Cart = () => {
+
+    const storeItems = useSelector(getStoreItemArray);
+
+    // console.log("test store items", storeItems);
+
+    const fullCart = storeItems.map((item) => {
+        return (
+            <CartItem>
+                <CartItemHeader>
+                    <CartItemTitle>{item.title}</CartItemTitle>
+                    <CloseCartItem size={24} icon={ic_close} />
+                </CartItemHeader>
+                <p>Quantity: {item.quantity}</p>
+            </CartItem>
+        )
+    });
 
     return (
         <Wrapper>
             <div>
                 <CartHeader>Your cart</CartHeader>
                 <CartNumItems>0 Items</CartNumItems>
-                <CartItem>
-                    <CartItemHeader>
-                        <CartItemTitle>Hello World</CartItemTitle>
-                        <CloseCartItem size={24} icon={ic_close} />
-                    </CartItemHeader>
-                    <p>Quantity: 1</p>
-                </CartItem>
+                {fullCart}
             </div>
             <CartFooterWrapper>
-                <CartTotal>Some stuff</CartTotal>
+                <CartTotal>Total: <CartPrice>$3.14</CartPrice></CartTotal>
                 <div>
-                    <CartPurchaseButton />
+                    <CartPurchaseButton>Purchase</CartPurchaseButton>
                 </div>
             </CartFooterWrapper>
         </Wrapper>
@@ -36,6 +50,7 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    height: 100%;
 `
 
 const CartItem = styled.div`
@@ -68,12 +83,24 @@ const CartItemTitle = styled.h2`
 `
 
 const CartFooterWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
 `
 
 const CartTotal = styled.div`
 `
 
+const CartPrice = styled.span`
+    font-weight: bold;
+`
+
 const CartPurchaseButton = styled.button`
+    border: none;
+    background: #d13861;
+    border-radius: 8px;
+    color: white;
+    padding: 5px 20px;
 `
 
 export default Cart;

@@ -46,6 +46,7 @@ const CartWrapper = styled.div`
   grid-area: side;
   border-left: 3px dashed #ff406e;
   padding-left: 8px;
+  margin-left: auto;
 `;
 
 export default App;
