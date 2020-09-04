@@ -1,0 +1,13 @@
+ok so the +  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+ is for the tool sin the boroser so you can see the store maybe?
+
+
+ look at           [action.item.id]
+ in reducer/index.js
+
+ We are using the string as a key inside the []
+
+
+From 3B lecture notes
+ It's good practice to keep selector functions colocated with the reducers. So, let's move this function to the reducer file:
+
