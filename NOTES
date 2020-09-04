@@ -6,3 +6,8 @@ ok so the +  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTE
  in reducer/index.js
 
  We are using the string as a key inside the []
+
+
+From 3B lecture notes
+ It's good practice to keep selector functions colocated with the reducers. So, let's move this function to the reducer file:
+

@@ -4,24 +4,43 @@ import styled from "styled-components";
 import Logo from "./Logo";
 import ItemGrid from "./ItemGrid";
 import GlobalStyles from "./GlobalStyles";
+import { useSelector } from "react-redux";
+import { getStoreItemArray } from "../reducers";
 
 const Cart = () => {
+  const storeItems = useSelector(getStoreItemArray);
+
   return (
     <Wrapper>
       <FlexItems>
-        <TopTitle>Your Item</TopTitle>
-        <SubTitle>1 Item</SubTitle>
+        <TopTitle>Your Items</TopTitle>
+        <SubTitle>{storeItems.length} Items</SubTitle>
         <Items>
-          <CartItem>
-            <CartHeader>
-              <CartItemName>Hello World</CartItemName>
-              <Button>X</Button>
-            </CartHeader>
-            <Quantity>
+          {storeItems.map((item) => {
+            console.log(item);
+            return (
+              <CartItem>
+                <CartHeader>
+                  <CartItemName>{item.title}</CartItemName>
+                  <Button>X</Button>
+                </CartHeader>
+
+                <Quantity>
+                  Quantity:
+                  <ItemsAmount
+                    type="text"
+                    name="name"
+                    defaultValue={item.quantity}
+                  ></ItemsAmount>
+                </Quantity>
+              </CartItem>
+            );
+          })}
+
+          {/* <Quantity>
               Quantity:
               <ItemsAmount type="text" name="name" />
-            </Quantity>
-          </CartItem>
+            </Quantity> */}
         </Items>
       </FlexItems>
       <GlobalStyles />
@@ -66,7 +85,6 @@ const Quantity = styled.div`
 const ItemsAmount = styled.input`
   width: 20px;
   height: 20px;
-  padding: 10px;
   background-color: white;
   border-top: 0px black;
   border-left: 0px black;
@@ -81,6 +99,7 @@ const CartItemName = styled.div`
 
 const CartItem = styled.div`
   border: 2px dashed grey;
+  margin-bottom: 10px;
 `;
 
 const CartHeader = styled.div`
