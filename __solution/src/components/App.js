@@ -1,10 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import Logo from './Logo';
-import ItemGrid from './ItemGrid';
-import Cart from './Cart';
-import GlobalStyles from './GlobalStyles';
+import Logo from "./Logo";
+import ItemGrid from "./ItemGrid";
+import Cart from "./Cart";
+import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
   return (
@@ -28,8 +28,8 @@ const Wrapper = styled.div`
   position: relative;
   display: grid;
   grid-template-areas:
-    'header header header sidebar'
-    'main main main sidebar';
+    "header header header sidebar"
+    "main main main sidebar";
   /* grid-gap: 64px; */
 `;
 
