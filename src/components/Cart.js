@@ -6,8 +6,12 @@ import ItemGrid from "./ItemGrid";
 import GlobalStyles from "./GlobalStyles";
 import { useSelector } from "react-redux";
 import { getStoreItemArray } from "../reducers";
+import { useDispatch } from "react-redux";
+import { removeItem } from "../actions";
 
 const Cart = () => {
+  const dispatch = useDispatch();
+
   const storeItems = useSelector(getStoreItemArray);
 
   return (
@@ -22,7 +26,7 @@ const Cart = () => {
               <CartItem>
                 <CartHeader>
                   <CartItemName>{item.title}</CartItemName>
-                  <Button>X</Button>
+                  <Button onClick={() => dispatch(removeItem(item))}>X</Button>
                 </CartHeader>
 
                 <Quantity>

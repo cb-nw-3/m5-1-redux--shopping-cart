@@ -12,6 +12,14 @@ export default function cartreducer(state = initialState, action) {
       };
     }
 
+    case "REMOVE_ITEM": {
+      const stateCopy = { ...state }; // New object we CAN mutate
+
+      delete stateCopy[action.item.id];
+      console.log(stateCopy);
+      return stateCopy;
+    }
+
     default:
       return state;
   }
