@@ -31,6 +31,16 @@ export default function cartreducer(state = initialState, action) {
       return stateCopy;
     }
 
+    case "UPDATE_QUANTITY": {
+      return {
+        ...state,
+        [action.item_id]: {
+          ...state[action.item_id],
+          quantity: action.new_quantity,
+        },
+      };
+    }
+
     default:
       return state;
   }

@@ -1,13 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
-import Logo from "./Logo";
-import ItemGrid from "./ItemGrid";
 import GlobalStyles from "./GlobalStyles";
 import { useSelector } from "react-redux";
 import { getStoreItemArray } from "../reducers";
 import { useDispatch } from "react-redux";
-import { removeItem } from "../actions";
+import { removeItem, updateQuantity } from "../actions";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -21,9 +19,12 @@ const Cart = () => {
       subtotal = subtotal + storeItem.price * storeItem.quantity;
     });
     subtotal = subtotal / 100;
-    console.log(subtotal);
     setTotal(parseFloat(subtotal));
   }, [storeItems]);
+
+  function quantChanged(event) {
+    dispatch(updateQuantity(event.target.id, parseInt(event.target.value)));
+  }
 
   return (
     <Wrapper>
@@ -44,8 +45,9 @@ const Cart = () => {
                   Quantity:
                   <ItemsAmount
                     type="text"
-                    name="name"
+                    id={item.id}
                     value={item.quantity}
+                    onChange={quantChanged}
                   ></ItemsAmount>
                 </Quantity>
               </CartItem>
@@ -102,8 +104,7 @@ const Quantity = styled.div`
 `;
 
 const ItemsAmount = styled.input`
-  width: 20px;
-  height: 20px;
+  width: 40px;
   background-color: white;
   border-top: 0px black;
   border-left: 0px black;
