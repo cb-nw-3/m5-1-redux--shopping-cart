@@ -67,6 +67,10 @@ const ItemsAmount = styled.input`
   width: 20px;
   height: 20px;
   padding: 10px;
+  background-color: white;
+  border-top: 0px black;
+  border-left: 0px black;
+  border-right: 0px black;
 `;
 
 const CartItemName = styled.div`
