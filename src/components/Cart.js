@@ -51,14 +51,9 @@ const Cart = () => {
               </CartItem>
             );
           })}
-
-          {/* <Quantity>
-              Quantity:
-              <ItemsAmount type="text" name="name" />
-            </Quantity> */}
         </Items>
-        <TopTitle>Total: {total}</TopTitle>
       </FlexItems>
+      <BottomTotal>Total: {total}</BottomTotal>
       <GlobalStyles />
     </Wrapper>
   );
@@ -80,6 +75,14 @@ const Button = styled.button`
 const TopTitle = styled.div`
   font-weight: bold;
   color: white;
+`;
+
+const BottomTotal = styled.div`
+  font-weight: bold;
+  color: white;
+  position: absolute;
+  bottom: 0px;
+  padding: 20px;
 `;
 
 const SubTitle = styled.div`
@@ -129,6 +132,7 @@ const FlexItems = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  justify-content: space-between;
 `;
 
 const Wrapper = styled.div`
