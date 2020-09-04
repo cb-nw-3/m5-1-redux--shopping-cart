@@ -3,11 +3,23 @@ const initialState = {};
 export default function cartreducer(state = initialState, action) {
   switch (action.type) {
     case "ADD_ITEM": {
+      console.log("ADD_ITEM");
+
+      console.log(Object.keys(state));
+      let new_quantity;
+      if (Object.keys(state).includes(action.item.id)) {
+        console.log("contains already " + action.item.id);
+        new_quantity = state[action.item.id].quantity + 1;
+
+        console.log(state[action.item.id].quantity);
+      } else {
+        new_quantity = 1;
+      }
       return {
         ...state,
         [action.item.id]: {
           ...action.item,
-          quantity: 1,
+          quantity: new_quantity,
         },
       };
     }
@@ -16,7 +28,6 @@ export default function cartreducer(state = initialState, action) {
       const stateCopy = { ...state }; // New object we CAN mutate
 
       delete stateCopy[action.item.id];
-      console.log(stateCopy);
       return stateCopy;
     }
 

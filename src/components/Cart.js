@@ -13,6 +13,17 @@ const Cart = () => {
   const dispatch = useDispatch();
 
   const storeItems = useSelector(getStoreItemArray);
+  const [total, setTotal] = React.useState("0");
+
+  React.useEffect(() => {
+    let subtotal = 0.0;
+    storeItems.forEach((storeItem) => {
+      subtotal = subtotal + storeItem.price * storeItem.quantity;
+    });
+    subtotal = subtotal / 100;
+    console.log(subtotal);
+    setTotal(parseFloat(subtotal));
+  }, [storeItems]);
 
   return (
     <Wrapper>
@@ -34,7 +45,7 @@ const Cart = () => {
                   <ItemsAmount
                     type="text"
                     name="name"
-                    defaultValue={item.quantity}
+                    value={item.quantity}
                   ></ItemsAmount>
                 </Quantity>
               </CartItem>
@@ -46,6 +57,7 @@ const Cart = () => {
               <ItemsAmount type="text" name="name" />
             </Quantity> */}
         </Items>
+        <TopTitle>Total: {total}</TopTitle>
       </FlexItems>
       <GlobalStyles />
     </Wrapper>
