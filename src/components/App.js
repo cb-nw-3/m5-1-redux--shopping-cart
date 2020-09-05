@@ -1,9 +1,10 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import Cart from "./Cart";
 
-import Logo from './Logo';
-import ItemGrid from './ItemGrid';
-import GlobalStyles from './GlobalStyles';
+import Logo from "./Logo";
+import ItemGrid from "./ItemGrid";
+import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
   return (
@@ -14,7 +15,9 @@ const App = () => {
       <ItemGridWrapper>
         <ItemGrid />
       </ItemGridWrapper>
-
+      <CartWrapper>
+        <Cart />
+      </CartWrapper>
       <GlobalStyles />
     </Wrapper>
   );
