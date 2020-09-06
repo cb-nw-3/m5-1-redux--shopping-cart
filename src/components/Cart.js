@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import Button from "./Button";
-import getSubtotal from "../reducers";
-import getItemArray from "../reducers";
+
+import { getItemArray, getSubtotal } from "../reducers";
 import { formatPriceForHumans } from "../helpers";
+
 import CartItem from "./CartItem";
+import Button from "./Button";
 
 const Cart = () => {
   const items = useSelector(getItemArray);
@@ -55,14 +56,6 @@ const Top = styled.div`
   padding-left: 32px;
   padding-right: 32px;
 `;
-
-const Title = styled.h2`
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 0;
-`;
-
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
@@ -70,6 +63,13 @@ const Bottom = styled.div`
   padding-bottom: 64px;
   padding-left: 32px;
   padding-right: 32px;
+`;
+
+const Title = styled.h2`
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0;
 `;
 
 const Subtitle = styled.p`
@@ -91,5 +91,4 @@ const ItemList = styled.ul`
 const Total = styled.div`
   font-size: 22px;
 `;
-
 export default Cart;

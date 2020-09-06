@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { Icon } from "react-icons-kit";
+import { FaTimesCircle } from "react-icons/fa";
 
 import { updateQuantity, removeItem } from "../actions";
 import UnstyledButton from "./UnstyledButton";
@@ -14,7 +14,9 @@ const CartItem = ({ item }) => {
     <Wrapper>
       <Header>
         {item.title}
-        <CloseBtn onClick={() => dispatch(removeItem(item.id))}></CloseBtn>
+        <CloseBtn onClick={() => dispatch(removeItem(item.id))}>
+          <FaTimesCircle />
+        </CloseBtn>
       </Header>
       <Body>
         Quantity:{" "}
