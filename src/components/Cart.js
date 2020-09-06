@@ -1,27 +1,36 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Icon } from 'react-icons-kit'
 import { ic_close } from 'react-icons-kit/md/ic_close'
 
 import { getStoreItemArray } from '../reducers'
+import { removeItem } from '../actions';
 
 const Cart = () => {
+    const dispatch = useDispatch();
 
     const storeItems = useSelector(getStoreItemArray);
 
-    // console.log("test store items", storeItems);
+    console.log("store items", storeItems);
+
+    // the button should, onClick, simply remove the relevant item from the array.
+    // that shouldn't be too difficult, *hollow laugh*
+
+    // WRONG! I need to actually dispatch the action.
 
     const fullCart = storeItems.map((item) => {
         return (
             <CartItem>
                 <CartItemHeader>
                     <CartItemTitle>{item.title}</CartItemTitle>
-                    <CloseCartItem size={24} icon={ic_close} />
+                    <CloseCartItemButton onClick={() => dispatch(removeItem(item.id))}>
+                        <CloseCartItem size={24} icon={ic_close} />
+                    </CloseCartItemButton>
                 </CartItemHeader>
                 <p>Quantity: {item.quantity}</p>
-            </CartItem>
+            </CartItem >
         )
     });
 
@@ -76,6 +85,12 @@ const CartHeader = styled.h1`
 
 const CloseCartItem = styled(Icon)`
     margin-top: 24px;
+    color: white;
+`
+
+const CloseCartItemButton = styled.button`
+    border: none;
+    background: none;
 `
 
 const CartItemTitle = styled.h2`
