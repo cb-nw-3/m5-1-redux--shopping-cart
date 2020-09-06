@@ -6,7 +6,7 @@ import { Icon } from 'react-icons-kit'
 import { ic_close } from 'react-icons-kit/md/ic_close'
 
 import { getStoreItemArray } from '../reducers'
-import { removeItem } from '../actions';
+import { removeItem, updateQuantity } from '../actions';
 
 const Cart = () => {
     const dispatch = useDispatch();
@@ -29,7 +29,10 @@ const Cart = () => {
                         <CloseCartItem size={24} icon={ic_close} />
                     </CloseCartItemButton>
                 </CartItemHeader>
-                <p>Quantity: {item.quantity}</p>
+                <p>Quantity: <QuantityInput placeholder={item.quantity} onChange={(ev) => {
+                    console.log(ev.target.value);
+                    dispatch(updateQuantity([item, ev.target.value]))
+                }} /></p>
             </CartItem >
         )
     });
@@ -101,6 +104,15 @@ const CartFooterWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 0 40px;
+`
+
+const QuantityInput = styled.input`
+    background: none;
+    border: none;
+    border-bottom: 1px solid grey;
+    font-size: 20px;
+    color: white;
+    width: 30px;
 `
 
 const CartTotal = styled.div`
