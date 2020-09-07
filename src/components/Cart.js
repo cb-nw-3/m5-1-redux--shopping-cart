@@ -1,13 +1,16 @@
 // Libraries
 import React from "react";
+import { useSelector } from "react-redux";
 
 // Styles
 import styled from "styled-components";
 
 // Components
 import CartItem from "./CartItem";
+import { getStoreItemArray } from "../reducers";
 
 const Cart = () => {
+  const storeItems = useSelector(getStoreItemArray);
   return (
     <Wrapper>
       <Top>
@@ -15,7 +18,17 @@ const Cart = () => {
           <strong>Your Cart</strong>
         </Title>
         <NumOfItems>0 item</NumOfItems>
-        <CartItem />
+        {storeItems.map((item) => {
+          return (
+            <CartItem
+              key={item.id}
+              price={item.price}
+              title={item.title}
+              id={item.id}
+              quantity={item.quantity}
+            ></CartItem>
+          );
+        })}
       </Top>
       <Bottom>
         <Total>Total: ????</Total>
@@ -32,7 +45,7 @@ const Wrapper = styled.section`
   justify-content: space-between;
   color: white;
   padding: 30px;
-  height: 100vh;
+  height: 100%;
 `;
 
 const Top = styled.div``;

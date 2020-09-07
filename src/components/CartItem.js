@@ -4,11 +4,11 @@ import React from "react";
 // Styles
 import styled from "styled-components";
 
-const CartItem = () => {
+const CartItem = ({ title }) => {
   return (
     <Wrapper>
       <Top>
-        <ItemName>Item Name</ItemName>
+        <ItemName>{title}</ItemName>
         <Button>X</Button>
       </Top>
       <Bottom>
