@@ -42,8 +42,8 @@ Redux was released in 2015. It won the war.
 
 # The idea
 
-- Your state lives in a **redux store**.
-- You **connect** React components to that store.
+-   Your state lives in a **redux store**.
+-   You **connect** React components to that store.
 
 ---
 
@@ -59,8 +59,8 @@ Keep it around, look at it later. It'll make more sense.
 
 ## Two NPM Packages
 
-- `redux` is technically not related to React at all. It's an independent state library.
-- `react-redux` are the _react bindings_.
+-   `redux` is technically not related to React at all. It's an independent state library.
+-   `react-redux` are the _react bindings_.
 
 We need both to use Redux
 
@@ -77,15 +77,15 @@ Redux always uses a single store, even for very large applications.
 ## Creating a Redo Store
 
 ```js
-import { createStore } from "redux";
+import { createStore } from 'redux';
 
 function reducer(state, action) {
-  switch (action.type) {
-    case "SOMETHING":
-      return 5;
-    default:
-      return state;
-  }
+    switch (action.type) {
+        case 'SOMETHING':
+            return 5;
+        default:
+            return state;
+    }
 }
 
 const initialState = 10;
@@ -99,18 +99,18 @@ const store = createStore(reducer, initialState);
 
 ```js
 // In src/index.js
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from "react-redux";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 
-import App from "./components/App";
+import App from './components/App';
 
 const store = ReactDOM.render(
-  // All the create-store stuff
-  <Provider store={store}>
-    <App />
-  </Provider>,
-  document.querySelector("#root")
+    // All the create-store stuff
+    <Provider store={store}>
+        <App />
+    </Provider>,
+    document.querySelector('#root')
 );
 ```
 
@@ -120,14 +120,14 @@ const store = ReactDOM.render(
 
 ```js
 // components/AppleFarm.js
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 const AppleFarm = () => {
-  const numberOfApples = useSelector((state) => {
-    return state.numberOfApples;
-  });
+    const numberOfApples = useSelector((state) => {
+        return state.numberOfApples;
+    });
 
-  return <div>Number of apples: {numberOfApples}</div>;
+    return <div>Number of apples: {numberOfApples}</div>;
 };
 ```
 
@@ -161,20 +161,22 @@ Our state shape:
 }
 */
 
+import { useSelector } from 'react-redux';
+
 const FridgeContents = () => {
-  const fridgeItems = /* TODO */
+    const fridgeItems = useSelector((state) => {
+        return state.fridge;
+    });
 
-  return (
-    <div>
-      <h1>Your fridge contains:</h1>
+    return (
+        <div>
+            <h1>Your fridge contains:</h1>
 
-      {fridgeItems.map(item => (
-        <div key={item}>
-          {item}
+            {fridgeItems.map((item) => (
+                <div key={item}>{item}</div>
+            ))}
         </div>
-      ))}
-    </div>
-  );
+    );
 };
 ```
 
@@ -204,17 +206,26 @@ Our state shape:
 */
 
 const App = () => {
-  // We're going to watch OUR favourite movie,
-  // in our BOYFRIEND's favourite genre.
-  // (Terror at Jarry Park)
-  const movie = /* TODO */
+    // We're going to watch OUR favourite movie,
+    // in our BOYFRIEND's favourite genre.
+    // (Terror at Jarry Park)
+    const movie = useSelector((state) => {
+        return state.myFavoriteMovies[state.boyfriendFavouriteGenre];
+        // scare brakets means the variable value
+    });
 
-  return (
-    <div>
-      Tonight, we'll watch: {movie}
-    </div>
-  );
+    return <div>Tonight, we'll watch: {movie}</div>;
 };
+```
+
+```js
+const fruits = { banana: 4, apple: 1 };
+const myFruit = 'banana';
+// These two are the same (not what we want):
+fruits.myFruit;
+fruits['myFruit'];
+// This does the trick:
+fruits[myFruit];
 ```
 
 ---
@@ -226,31 +237,40 @@ We have another hook, `useDispatch`.
 ---
 
 ```js
-import { useDispatch, useSelector } from "react-redux"; // <-- 👀
+import { useDispatch, useSelector } from 'react-redux'; // <-- 👀
 
 const TodoList = () => {
-  const todos = useSelector((state) => state.todos);
-  const dispatch = useDispatch(); // <-- 👀
+    const todos = useSelector((state) => state.todos);
+    const dispatch = useDispatch(); // <-- 👀
 
-  return (
-    <ul>
-      {todos.map((todo) => (
-        <li key={todo.id}>
-          {todo.value}
-          <button
-            onClick={() =>
-              dispatch({
-                type: "MARK_TODO_AS_COMPLETED",
-                todoId: todo.id,
-              })
-            }
-          >
-            complete
-          </button>
-        </li>
-      ))}
-    </ul>
-  );
+    // todos is:
+    [
+        {
+            id: 1,
+            value: 'go to store',
+            isComplete: false,
+        },
+    ];
+
+    return (
+        <ul>
+            {todos.map((todo) => (
+                <li key={todo.id}>
+                    {todo.value}
+                    <button
+                        onClick={() =>
+                            dispatch({
+                                type: 'MARK_TODO_AS_COMPLETED',
+                                todoId: todo.id,
+                            })
+                        }
+                    >
+                        complete
+                    </button>
+                </li>
+            ))}
+        </ul>
+    );
 };
 ```
 
@@ -267,24 +287,24 @@ By convention, action creators in redux all live together in the same file(s):
 ```js
 // actions.js
 export const addTodo = (todoItem) => {
-  return {
-    type: "ADD_TODO",
-    todoItem,
-  };
+    return {
+        type: 'ADD_TODO',
+        todoItem,
+    };
 };
 
 export const markTodoAsCompleted = (todoId) => {
-  return {
-    type: "MARK_TODO_AS_COMPLETED",
-    todoId,
-  };
+    return {
+        type: 'MARK_TODO_AS_COMPLETED',
+        todoId,
+    };
 };
 
 export const deleteTodo = (todoId) => {
-  return {
-    type: "DELETE_TODO",
-    todoId,
-  };
+    return {
+        type: 'DELETE_TODO',
+        todoId,
+    };
 };
 ```
 
@@ -321,21 +341,29 @@ Wire in the action and dispatch it.
 
 ```js
 // Exercise 5
-import { useDispatch } from "react-redux";
-import { pokeUser } from "../actions";
+import { useDispatch } from 'react-redux';
+import { messageUser } from '../actions';
 
 const OnlineUsers = () => {
-  // TODO: Something missing here...
+    const dispatch = useDispatch();
 
-  const onlineUsers = useSelector((state) => {
-    return state.users.filter((user) => user.online);
-  });
+    const onlineUsers = useSelector((state) => {
+        return state.users.filter((user) => user.online);
+    });
 
-  return onlineUsers.map((user) => (
-    <div key={user.name}>
-      <button onClick={/* TODO */}>Message {user.name}</button>
-    </div>
-  ));
+    return onlineUsers.map((user) => (
+        <div key={user.name}>
+            <button
+                onClick={() => {
+                    dispatch(removeUserFromFriends(user));
+                    // -> dispatch({ type: 'MESSAGE_USER', user: user })
+                    // -> undefined
+                }}
+            >
+                Message {user.name}
+            </button>
+        </div>
+    ));
 };
 ```
 
@@ -343,24 +371,25 @@ const OnlineUsers = () => {
 
 ```js
 // Exercise 6
-import { useDispatch } from "react-redux";
-import { addItemToFridge } from "../actions";
+import { useDispatch } from 'react-redux';
+import { addItemToFridge } from '../actions';
 
 const FridgeForm = () => {
-  const [value, setValue] = React.useState("");
-  const dispatch = useDispatch();
+    const [value, setValue] = React.useState('');
+    const dispatch = useDispatch();
 
-  return (
-    <form
-      onSubmit={() => {
-        /* TODO */
-      }}
-    >
-      <input type="text" onChange={(ev) => setValue(ev.target.value)} />
+    return (
+        <form
+            onSubmit={() => {
+                dispatch(addItemToFridge(value));
+                setValue('');
+            }}
+        >
+            <input type="text" onChange={(ev) => setValue(ev.target.value)} />
 
-      <button type="submit">Submit</button>
-    </form>
-  );
+            <button type="submit">Submit</button>
+        </form>
+    );
 };
 ```
 
@@ -368,26 +397,26 @@ const FridgeForm = () => {
 
 ```js
 // Exercise 7
-import { useDispatch } from "react-redux";
-import { dismissModal } from "../actions";
+import { useDispatch } from 'react-redux';
+import { dismissModal } from '../actions';
 
 const Modal = () => {
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
-  React.useEffect(() => {
-    const handleKeydown = (ev) => {
-      // TODO: Close modal when 'Escape' is pressed
-      // (Hint: use ev.key)
-    };
+    React.useEffect(() => {
+        const handleKeydown = (ev) => {
+            // TODO: Close modal when 'Escape' is pressed
+            // (Hint: use ev.key)
+        };
 
-    window.addEventListener("keydown", handleKeydown);
+        window.addEventListener('keydown', handleKeydown);
 
-    return () => {
-      window.removeEventListener("keydown", handleKeydown);
-    };
-  }, []);
+        return () => {
+            window.removeEventListener('keydown', handleKeydown);
+        };
+    }, []);
 
-  return <div>Hello</div>;
+    return <div>Hello</div>;
 };
 ```
 
