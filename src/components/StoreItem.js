@@ -1,12 +1,17 @@
-import React from 'react';
-import styled from 'styled-components';
-
-import Button from './Button';
+import React from "react";
+import styled from "styled-components";
+import { useDispatch } from "react-redux";
+//sends out the action to the store
+//`dispatch` is a function we get from the `useDispatch` Redux hook. We call this when we want to _tell redux that something happened_.
+import { addItem } from "../actions";
+import Button from "./Button";
 
 const StoreItem = ({ id, title, src, price }) => {
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  const dispatch = useDispatch();
+
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(price / 100);
 
   return (
@@ -15,7 +20,9 @@ const StoreItem = ({ id, title, src, price }) => {
         <Image src={src} alt={`${title} sticker`} />
       </ImageWrapper>
       <Title>{title}</Title>
-      <Button>Add to Cart — {formattedPrice}</Button>
+      <Button onClick={() => dispatch(addItem({ id, title, price }))}>
+        Add to Cart
+      </Button>
     </Wrapper>
   );
 };
@@ -51,3 +58,7 @@ const Title = styled.h2`
 `;
 
 export default StoreItem;
+
+//When the user clicks the button, we create the `ADD_ITEM` action that is in action.js with the `addItem` function, and dispatch it to the store.
+//When we receive the `ADD_ITEM` action, we produce a new copy of the state, with an added item.
+//Next, we will update our reducer to handle this action. Remember, _actions describe a change_, but they aren't opinionated about what should happen as a result.
