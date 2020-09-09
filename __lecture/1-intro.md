@@ -202,6 +202,15 @@ Our state shape:
   },
 }
 */
+###
+const fruits = { banana: 4, apple: 1 };
+  const myFruit = 'banana'
+  // These two are the same (not what we want):
+  fruits.myFruit
+  fruits['myFruit']
+  // This does the trick:
+  fruits[myFruit]
+###
 
 const App = () => {
   // We're going to watch OUR favourite movie,
@@ -325,7 +334,7 @@ import { useDispatch } from "react-redux";
 import { pokeUser } from "../actions";
 
 const OnlineUsers = () => {
-  // TODO: Something missing here...
+  const dispatch = useDispatch();
 
   const onlineUsers = useSelector((state) => {
     return state.users.filter((user) => user.online);
@@ -333,7 +342,13 @@ const OnlineUsers = () => {
 
   return onlineUsers.map((user) => (
     <div key={user.name}>
-      <button onClick={/* TODO */}>Message {user.name}</button>
+      <button
+        onClick={() => {
+          dispatch(removeUserFromFriends(user));
+        }}
+      >
+        Message {user.name}
+      </button>
     </div>
   ));
 };
@@ -343,6 +358,7 @@ const OnlineUsers = () => {
 
 ```js
 // Exercise 6
+//text input change a little the state
 import { useDispatch } from "react-redux";
 import { addItemToFridge } from "../actions";
 
@@ -353,7 +369,8 @@ const FridgeForm = () => {
   return (
     <form
       onSubmit={() => {
-        /* TODO */
+        dispatch(addItemToFridge(value));
+        setValue("");
       }}
     >
       <input type="text" onChange={(ev) => setValue(ev.target.value)} />
