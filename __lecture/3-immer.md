@@ -100,6 +100,7 @@ const state = { hi: 5 };
 state.hi = 6;
 
 // GOOD: fake mutation with Immer
+// Produce takes 2 arguments, syntaxe need to do hi=6
 const newState = produce(state, (draftState) => {
   draftState.hi = 6;
 });
