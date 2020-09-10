@@ -10,64 +10,64 @@ import teaRexSrc from './assets/images/sticker-tea-rex.jpg';
 import yikesSrc from './assets/images/sticker-yikes.jpg';
 
 export const STORE_ITEMS = [
-  {
-    id: 'abduction',
-    title: 'Abduction 🐮',
-    src: abductionSrc,
-    price: 289,
-  },
-  {
-    id: 'alpaca',
-    title: 'Pink Alpaca',
-    src: alpacaSrc,
-    price: 299,
-  },
-  {
-    id: 'corgis',
-    title: 'Happy Corgis',
-    src: corgisSrc,
-    price: 219,
-  },
-  {
-    id: 'good-kitty',
-    title: 'GOOD KITTY',
-    src: impostorSrc,
-    price: 319,
-  },
-  {
-    id: 'js-pride',
-    title: 'JS Pride',
-    src: jsPrideSrc,
-    price: 249,
-  },
-  {
-    id: 'pride-cats',
-    title: 'Pride Cats',
-    src: prideCatsSrc,
-    price: 289,
-  },
-  {
-    id: 'sloth-stack',
-    title: 'Stack O’ Sloths',
-    src: slothStackSrc,
-    price: 349,
-  },
-  {
-    id: 'space-chicken',
-    title: 'Chicken Astronaut',
-    src: spaceChickenSrc,
-    price: 329,
-  },
-  {
-    id: 'tea-rex',
-    title: 'Tea Rex',
-    src: teaRexSrc,
-    price: 229,
-  },
-  {
-    id: 'yikes',
-    title: 'Yikes',
-    src: yikesSrc,
-    price: 99,
-  },
+    {
+        id: 'abduction',
+        title: 'Abduction 🐮',
+        src: abductionSrc,
+        price: 289,
+    },
+    {
+        id: 'alpaca',
+        title: 'Pink Alpaca',
+        src: alpacaSrc,
+        price: 299,
+    },
+    {
+        id: 'corgis',
+        title: 'Happy Corgis',
+        src: corgisSrc,
+        price: 219,
+    },
+    {
+        id: 'good-kitty',
+        title: 'GOOD KITTY',
+        src: impostorSrc,
+        price: 319,
+    },
+    {
+        id: 'js-pride',
+        title: 'JS Pride',
+        src: jsPrideSrc,
+        price: 249,
+    },
+    {
+        id: 'pride-cats',
+        title: 'Pride Cats',
+        src: prideCatsSrc,
+        price: 289,
+    },
+    {
+        id: 'sloth-stack',
+        title: 'Stack O’ Sloths',
+        src: slothStackSrc,
+        price: 349,
+    },
+    {
+        id: 'space-chicken',
+        title: 'Chicken Astronaut',
+        src: spaceChickenSrc,
+        price: 329,
+    },
+    {
+        id: 'tea-rex',
+        title: 'Tea Rex',
+        src: teaRexSrc,
+        price: 229,
+    },
+    {
+        id: 'yikes',
+        title: 'Yikes',
+        src: yikesSrc,
+        price: 99,
+    },
 ];
