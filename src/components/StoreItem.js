@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
 // Components
 import Button from './Button';
-
+// Actions
 import { addItem } from '../actions';
 
 const StoreItem = ({ id, title, src, price }) => {
@@ -23,7 +23,7 @@ const StoreItem = ({ id, title, src, price }) => {
             <Title>{title}</Title>
             <Button onClick={() => dispatch(addItem({ id, title, price }))}>
                 {' '}
-                Add to Cart
+                Add to Cart - {formattedPrice}
             </Button>
         </Wrapper>
     );

@@ -6,10 +6,17 @@ import { useSelector } from 'react-redux';
 import Button from './Button';
 import CartItem from './CartItem';
 // Reducers
-import { getStoreItemArray } from '../reducers';
+import { getStoreItemArray, getSubtotal } from '../reducers';
 
 const Cart = () => {
     const storeItems = useSelector(getStoreItemArray);
+    const subtotal = useSelector(getSubtotal);
+
+    const formatPrice = (price) =>
+        (price / 100).toLocaleString('en-US', {
+            style: 'currency',
+            currency: 'USD',
+        });
 
     return (
         <Wrapper>
@@ -18,7 +25,6 @@ const Cart = () => {
                 <Paragraph>1 Item</Paragraph>
                 <ItemList>
                     {storeItems.map((item) => (
-                        // console.log('Data: ', item),
                         <CartItem key={item.id} item={item} />
                     ))}
                 </ItemList>
@@ -27,7 +33,9 @@ const Cart = () => {
                 <PurchaseWrapper>
                     <Total>
                         Total:{' '}
-                        <span style={{ fontWeight: 'bold' }}>$12.34</span>
+                        <span style={{ fontWeight: 'bold' }}>
+                            {formatPrice(subtotal)}
+                        </span>
                     </Total>
                     <Button style={{ width: '150px' }}>Purchase</Button>
                 </PurchaseWrapper>
