@@ -1,11 +1,12 @@
 // Libraries
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 import { AiOutlineClose } from 'react-icons/ai';
-
-import { removeItem } from '../actions';
+// Components
 import UnstyledButton from './UnstyledButton';
+// Actions
+import { removeItem, updateQuantity } from '../actions';
 
 const CartItem = ({ item }) => {
     const dispatch = useDispatch();
@@ -21,7 +22,12 @@ const CartItem = ({ item }) => {
             <ItemQuantity>
                 <div>
                     <Paragraph>Quantity:</Paragraph>{' '}
-                    <ItemInput defaultValue={item.quantity}></ItemInput>
+                    <ItemInput
+                        value={item.quantity}
+                        onChange={(e) =>
+                            dispatch(updateQuantity(item.id, e.target.value))
+                        }
+                    ></ItemInput>
                 </div>
             </ItemQuantity>
         </Wrapper>

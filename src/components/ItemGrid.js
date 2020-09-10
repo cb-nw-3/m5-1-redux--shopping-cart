@@ -1,9 +1,10 @@
+// Libraries
 import React from 'react';
 import styled from 'styled-components';
-
-import { STORE_ITEMS } from '../data';
-
+// Components
 import StoreItem from './StoreItem';
+// Data
+import { STORE_ITEMS } from '../data';
 
 const ItemGrid = () => {
     return (

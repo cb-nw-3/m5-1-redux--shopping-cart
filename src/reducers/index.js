@@ -11,12 +11,25 @@ export default function cartReducer(state = initialState, action) {
                 },
             };
         }
+
         case 'REMOVE_ITEM': {
             const stateCopy = { ...state };
             delete stateCopy[action.itemId];
 
             return stateCopy;
         }
+
+        case 'UPDATE_QUANTITY': {
+            const { itemId, newQuantity } = action;
+            return {
+                ...state,
+                [itemId]: {
+                    ...state[itemId],
+                    quantity: newQuantity,
+                },
+            };
+        }
+
         default:
             return state;
     }

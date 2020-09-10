@@ -7,3 +7,9 @@ export const removeItem = (itemId) => ({
     type: 'REMOVE_ITEM',
     itemId,
 });
+
+export const updateQuantity = (itemId, newQuantity) => ({
+    type: 'UPDATE_QUANTITY',
+    itemId,
+    newQuantity,
+});

@@ -1,7 +1,7 @@
 // Libraries
 import React from 'react';
-import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 // Components
 import Button from './Button';
 // Actions

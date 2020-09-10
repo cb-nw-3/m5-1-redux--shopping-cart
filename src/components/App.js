@@ -2,10 +2,10 @@
 import React from 'react';
 import styled from 'styled-components';
 // Components
-import Logo from './Logo';
-import ItemGrid from './ItemGrid';
-import GlobalStyles from './GlobalStyles';
 import Cart from './Cart';
+import GlobalStyles from './GlobalStyles';
+import ItemGrid from './ItemGrid';
+import Logo from './Logo';
 
 const App = () => {
     return (
