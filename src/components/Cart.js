@@ -12,6 +12,16 @@ const Cart = () => {
     const storeItems = useSelector(getStoreItemArray);
     const subtotal = useSelector(getSubtotal);
 
+    const isCartEmpty = () => {
+        if (storeItems.length > 1) {
+            return `${storeItems.length} Items`;
+        } else if (storeItems.length === 1) {
+            return '1 Item';
+        } else {
+            return 'Your cart is empty!';
+        }
+    };
+
     const formatPrice = (price) =>
         (price / 100).toLocaleString('en-US', {
             style: 'currency',
@@ -22,7 +32,7 @@ const Cart = () => {
         <Wrapper>
             <DivUp>
                 <Heading>Your Cart</Heading>
-                <Paragraph>1 Item</Paragraph>
+                <Paragraph>{isCartEmpty()}</Paragraph>
                 <ItemList>
                     {storeItems.map((item) => (
                         <CartItem key={item.id} item={item} />
