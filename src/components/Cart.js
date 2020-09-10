@@ -1,17 +1,27 @@
 // Libraries
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 // Components
 import Button from './Button';
 import CartItem from './CartItem';
+// Reducers
+import { getStoreItemArray } from '../reducers';
 
 const Cart = () => {
+    const storeItems = useSelector(getStoreItemArray);
+
     return (
         <Wrapper>
             <DivUp>
                 <Heading>Your Cart</Heading>
                 <Paragraph>1 Item</Paragraph>
-                <CartItem />
+                <ItemList>
+                    {storeItems.map((item) => (
+                        // console.log('Data: ', item),
+                        <CartItem key={item.id} item={item} />
+                    ))}
+                </ItemList>
             </DivUp>
             <DivDown>
                 <PurchaseWrapper>
@@ -54,6 +64,14 @@ const Heading = styled.h2`
 const Paragraph = styled.p`
     font-size: 16px;
     color: lightgray;
+`;
+
+const ItemList = styled.ul`
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    padding-top: 30px;
 `;
 
 const PurchaseWrapper = styled.div`

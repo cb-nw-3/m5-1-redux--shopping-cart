@@ -3,43 +3,51 @@ import React from 'react';
 import styled from 'styled-components';
 import { AiOutlineClose } from 'react-icons/ai';
 
-const CartItem = () => {
+const CartItem = ({ item }) => {
     return (
         <Wrapper>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <ItemTitle>Hello World</ItemTitle>
+            <ItemTitleWrapper>
+                <ItemTitle>{item.title}</ItemTitle>
                 <AiOutlineClose
                     style={{
-                        width: '25px',
-                        height: '25px',
+                        width: '15px',
+                        height: '15px',
                         color: 'white',
-                        margin: '20px',
+                        marginTop: '8px',
+                        marginRight: '20px',
+                        textAlign: 'center',
                     }}
                 />
-            </div>
+            </ItemTitleWrapper>
             <ItemQuantity>
                 <div>
-                    <Paragraph>Quantity: </Paragraph>{' '}
-                    <ItemInput value="1"></ItemInput>
+                    <Paragraph>Quantity:</Paragraph>{' '}
+                    <ItemInput defaultValue={item.quantity}></ItemInput>
                 </div>
             </ItemQuantity>
         </Wrapper>
     );
 };
 
-const Wrapper = styled.div`
-    position: absolute;
-    height: 130px;
+const Wrapper = styled.li`
+    height: 132px;
     width: 92%;
     border: dashed gray 2px;
-    margin-top: 30px;
+    margin-top: 20px;
+`;
+
+const ItemTitleWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    padding-right: 0;
+    margin-right: 0;
+    font-size: 22px;
+    color: white;
 `;
 
 const ItemTitle = styled.div`
     display: inline-block;
-    padding: 20px;
-    font-size: 22px;
-    color: white;
 `;
 
 const ItemQuantity = styled.div`
