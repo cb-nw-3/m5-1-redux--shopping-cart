@@ -22,6 +22,7 @@ const StoreItem = ({ id, title, src, price }) => {
             </ImageWrapper>
             <Title>{title}</Title>
             <Button onClick={() => dispatch(addItem({ id, title, price }))}>
+                {' '}
                 Add to Cart
             </Button>
         </Wrapper>
