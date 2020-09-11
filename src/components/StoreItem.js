@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 //`dispatch` is a function we get from the `useDispatch` Redux hook. We call this when we want to _tell redux that something happened_.
 import { addItem } from "../actions";
 import Button from "./Button";
-
+//Inside `StoreItem.js`, let's wire it up to dispatch this action from action creators
 const StoreItem = ({ id, title, src, price }) => {
   const dispatch = useDispatch();
 

@@ -1,7 +1,10 @@
 const initialState = {};
 
+// in component we call a dispatch that is given an action and then reducer executes that action
 export const getStoreItemArray = (state) => Object.values(state);
 // but we want to select the state as an _array_ of items, so that we can map through them in our React component.
+//so we can update cart
+//getStoreItemArray gets put into cart
 // keep selector functions _colocated_ with the reducers.
 export default function cartReducer(state = initialState, action) {
   switch (action.type) {
@@ -13,6 +16,12 @@ export default function cartReducer(state = initialState, action) {
           quantity: 1,
         },
       };
+    }
+    case "REMOVE_ITEM": {
+      // New object we CAN mutate
+      const stateCopy = { ...state };
+      delete stateCopy[action.itemId];
+      return stateCopy;
     }
     default:
       return state;
