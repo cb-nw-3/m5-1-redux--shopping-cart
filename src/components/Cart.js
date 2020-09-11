@@ -2,21 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Button from "./Button";
 import CartItem from "./CartItem";
-
-const data = [
-  {
-    name: "Happy corgis",
-    price: 2.19,
-    id: 1,
-    quantity: 1,
-  },
-  {
-    name: "Prode cats",
-    price: 2.89,
-    id: 1,
-    quantity: 1,
-  },
-];
+import { STORE_ITEMS } from "../data";
+import { useSelector } from "react-redux";
+import { getStoreItemArray } from "../reducers";
 
 // 1 a span where you indicate number of items (data.length)
 // 2 map over each item to render a CartItem component
@@ -24,27 +12,37 @@ const data = [
 // 4 show the total price, hard code the value
 // 5 make a puchase button
 const Cart = () => {
+  const storeItems = useSelector(getStoreItemArray);
   return (
     <>
       <Wrapper>
         <h2>your Cart</h2>
-        <span>
-          {data.length} {data.length === 1 ? "Item" : "Items"}
-        </span>
-        <dataList>
-          {data.map((data) => (
-            <CartItem key={data.id} data={data} />
-          ))}
-        </dataList>
-        <Button>purchase</Button>
+        <span>${}items</span>
+        <h4>HELLO WORLD</h4>
+        {storeItems.map((item) => (
+          <CartItem key={item.id} {...item} />
+        ))}
+        <Button>Purchase </Button>
       </Wrapper>
     </>
   );
 };
 
-const Wrapper = styled.section`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background: purple;
+  border-radius: 8px;
+  margin: 0;
   color: white;
 `;
+
+const Title = styled.h2`
+  margin: 0;
+  margin-bottom: 16px;
+  margin-top: 8px;
+  font-size: 22px;
+  font-weight: 600;
+`;
+
+export default Cart;

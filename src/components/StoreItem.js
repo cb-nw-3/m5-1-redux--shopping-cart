@@ -1,21 +1,24 @@
-import React from 'react';
-import styled from 'styled-components';
-
-import Button from './Button';
+import React from "react";
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import { addItem } from "../actions";
+import Button from "./Button";
 
 const StoreItem = ({ id, title, src, price }) => {
-  const formattedPrice = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  const formattedPrice = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
   }).format(price / 100);
-
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <ImageWrapper>
         <Image src={src} alt={`${title} sticker`} />
       </ImageWrapper>
       <Title>{title}</Title>
-      <Button>Add to Cart — {formattedPrice}</Button>
+      <Button onClick={() => dispatch(addItem({ id, title, price }))}>
+        Add to Cart
+      </Button>
     </Wrapper>
   );
 };
