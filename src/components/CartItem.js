@@ -23,10 +23,7 @@ const CartItem = () => {
   );
 };
 
-const Wrapper = styled.div`
-  border: 3px dashed grey;
-  height: 100vh;
-`;
+const Wrapper = styled.div``;
 
 const ItemDescription = styled.div`
   display: flex;
