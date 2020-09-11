@@ -1,4 +1,5 @@
 // import produce from "immer";
+//This is the action we'll dispatch when the user clicks "Add to cart".
 
 export const addItem = (item) => ({
   type: "ADD_ITEM",
@@ -11,13 +12,13 @@ export const removeItem = (itemId) => ({
 });
 
 export const updateQuantity = (itemId, newQuantities) => ({
-  type: 'UPDATE_QUANTITIES',
+  type: "UPDATE_QUANTITIES",
   itemId,
   newQuantities,
-})
+});
 
-export const emptyCart = () = ({
-  type: 'EMPTY_CART'
+export const emptyCart = () => ({
+  type: "EMPTY_CART",
 });
 // export const removeItem = produce(state, (draftState) => {
 //   draftState.addItem = type: "REMOVE_ITEM",
