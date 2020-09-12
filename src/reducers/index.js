@@ -1,3 +1,5 @@
+import produce from "immer";
+
 const initialState = [];
 
 export default function cartReducer(state = initialState, action) {
@@ -11,6 +13,13 @@ export default function cartReducer(state = initialState, action) {
         },
       };
     }
+
+    case "REMOVE_ITEM": {
+      return produce(state, (draftState) => {
+        delete draftState[action.id];
+      });
+    }
+
     default:
       return state;
   }

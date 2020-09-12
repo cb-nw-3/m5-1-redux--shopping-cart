@@ -3,11 +3,12 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import CartItem from "./CartItem";
 import Button from "./Button";
-import { getStoreItemArray } from "../reducers/index";
+import { getStoreItemArray } from "../reducers";
 
 const Cart = () => {
   const state = useSelector(getStoreItemArray);
   console.log(state);
+
   return (
     <Wrapper>
       <Header>
@@ -18,14 +19,15 @@ const Cart = () => {
         return (
           <CartItem
             key={item.id + index}
-            price={item.price}
+            id={item.id}
+            title={item.title}
             quantity={item.quantity}
           />
         );
       })}
       <ItemTotal>
         <Total>
-          Total:<strong> $12.34</strong>
+          Total:<strong> $</strong>
         </Total>
 
         <StyledButton>Purchase</StyledButton>

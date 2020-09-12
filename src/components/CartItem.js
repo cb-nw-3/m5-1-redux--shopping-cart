@@ -4,19 +4,23 @@ import { cross } from "react-icons-kit/icomoon/cross";
 import { Icon } from "react-icons-kit";
 import UnstyledButton from "./UnstyledButton";
 
-const CartItem = () => {
+import { useDispatch } from "react-redux";
+import { removeItem } from "../actions";
+
+const CartItem = ({ title, id, quantity }) => {
+  const dispatch = useDispatch();
   return (
     <Wrapper>
       <ItemDescription>
-        <ItemName>Hello World</ItemName>
-        <Button>
+        <ItemName>{title}</ItemName>
+        <Button onClick={() => dispatch(removeItem(id))}>
           <Icon icon={cross} size={"100%"}></Icon>
         </Button>
       </ItemDescription>
       <Quantity>
         <Label>
           Quantity:
-          <Input />
+          <Input value={quantity} />
         </Label>
       </Quantity>
     </Wrapper>
