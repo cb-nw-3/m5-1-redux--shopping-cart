@@ -1,19 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem } from "../actions";
 
 import Button from "./Button";
 
-const CartItem = () => {
+const CartItem = (props) => {
+  const dispatch = useDispatch();
   return (
     <CartItemDiv>
       <Top>
-        <Title>Hello World</Title>
-        <Xbutton>X</Xbutton>
+        <Title>{props.title}</Title>
+        <Xbutton onClick={(event) => dispatch(removeItem(props.id))}>X</Xbutton>
       </Top>
       <Bottom>
         <p>Quantity:</p>
-        <input value="1" />
+        <input placeholder="1" value={props.quantity} />
       </Bottom>
     </CartItemDiv>
   );
