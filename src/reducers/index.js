@@ -17,6 +17,7 @@ export default function cartReducer(state = initialState, action) {
       delete stateCopy[action.itemId];
       return stateCopy;
     }
+
     default:
       return state;
   }
