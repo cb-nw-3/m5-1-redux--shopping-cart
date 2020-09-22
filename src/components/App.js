@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components';
-
-import Logo from './Logo';
-import ItemGrid from './ItemGrid';
-import GlobalStyles from './GlobalStyles';
+import React from "react";
+import styled from "styled-components";
+import Cart from "./Cart.js";
+import Logo from "./Logo";
+import ItemGrid from "./ItemGrid";
+import GlobalStyles from "./GlobalStyles";
 
 const App = () => {
   return (
@@ -12,6 +12,9 @@ const App = () => {
         <Logo />
       </Header>
       <ItemGridWrapper>
+        <CartWrapper>
+          <Cart></Cart>
+        </CartWrapper>
         <ItemGrid />
       </ItemGridWrapper>
 
@@ -36,6 +39,8 @@ const ItemGridWrapper = styled.main`
 
 const CartWrapper = styled.div`
   grid-area: sidebar;
+  float: right;
+  width: 20%;
   border-left: 3px dashed #ff406e;
   padding-left: 8px;
 `;
