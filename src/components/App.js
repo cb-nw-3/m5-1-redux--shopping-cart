@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Logo from './Logo';
 import ItemGrid from './ItemGrid';
+import Cart from './Cart';
 import GlobalStyles from './GlobalStyles';
 
 const App = () => {
@@ -11,10 +12,12 @@ const App = () => {
       <Header>
         <Logo />
       </Header>
-      <ItemGridWrapper>
-        <ItemGrid />
-      </ItemGridWrapper>
-
+        <ItemGridWrapper>
+          <ItemGrid />
+        </ItemGridWrapper>
+        <CartWrapper>
+          <Cart />
+        </CartWrapper>
       <GlobalStyles />
     </Wrapper>
   );
@@ -22,6 +25,11 @@ const App = () => {
 
 const Wrapper = styled.div`
   position: relative;
+  display: grid;
+  grid-template-areas:
+    'header header header sidebar'
+    'main main main sidebar';
+  /* grid-gap: 64px; */
 `;
 
 const Header = styled.header`
