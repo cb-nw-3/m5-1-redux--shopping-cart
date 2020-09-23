@@ -3,9 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 
 import { removeItem } from '../actions';
+import {updateQuantity}from '../actions';
 
 const CartItem = ({item}) => {
   const dispatch = useDispatch();
+  const itemQuantity = useSelector((state) => state[item.id].quantity);
 
   return(
     <Wrapper>
@@ -17,7 +19,10 @@ const CartItem = ({item}) => {
       </ItemNameWrapper>
       <QuantityWrapper>
         <p>Quantity: </p>
-        <Quantity>1</Quantity>
+        <Quantity 
+          onChange={(event) => dispatch(updateQuantity(item.id, event.target.value))}
+          value={itemQuantity}
+        />
       </QuantityWrapper>
     </Wrapper>
   )
@@ -51,7 +56,7 @@ const RemoveButton = styled.button`
   cursor: pointer;
 `;
 
-const Quantity = styled.div`
+const Quantity = styled.input`
   display: flex;
   justify-content: center;
   align-items: center;

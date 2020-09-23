@@ -7,7 +7,13 @@ export default function cartReducer(state = initialState, action) {
         ...state,
         [action.item.id]: {
           ...action.item,
-          quantity: 1,
+          quantity:
+          // ternary verfies the item is in the cart and then that the quantity is above 0
+          // Number() is here because the state was a string otherwise. 
+            state[action.item.id] 
+              && state[action.item.id].quantity
+              ? Number(state[action.item.id].quantity) + 1
+              : 1,
         }
       }
     }
@@ -16,6 +22,17 @@ export default function cartReducer(state = initialState, action) {
       const cartCopy = { ...state};
       delete cartCopy[action.itemId];
       return cartCopy;
+    }
+
+    case 'UPDATE_QUANTITY': {
+      const { itemId, newQuantity } = action;
+      return {
+        ...state,
+        [itemId]: {
+          ...state[itemId],
+          quantity: newQuantity,
+        },
+      }
     }
 
     default:
