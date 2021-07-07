@@ -1,16 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { STORE_ITEMS } from '../data';
+import { STORE_ITEMS } from "../data";
 
-import StoreItem from './StoreItem';
+import StoreItem from "./StoreItem";
 
 const ItemGrid = () => {
   return (
     <Wrapper>
-      {STORE_ITEMS.map((item) => (
-        <StoreItem key={item.id} {...item} />
-      ))}
+      {STORE_ITEMS.map((item) => {
+        return <StoreItem key={item.id} {...item} />;
+      })}
     </Wrapper>
   );
 };
